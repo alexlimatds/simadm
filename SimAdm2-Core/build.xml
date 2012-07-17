@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<project name="JdsEngine" basedir="." default="options" >
+	
+	<!-- arquivo JAR da aplicação -->
+	<property name="jdsengine.jar" value="jdsengine.jar" />
+	
+	<!-- arquivo ZIP de distribuição -->
+	<property name="jdsengine.zip" value="jdsengine.zip" />
+	
+	<!-- diretório onde os arquivos .class serão gerados -->
+	<property name="build" value="build" />
+	
+	<!-- diretório onde se localizam os fontes -->
+	<property name="src" value="src" />
+	
+	<!-- diretório onde se as dependências (bibliotecas) -->
+	<property name="lib" value="lib" />
+	
+	<path id="lib.path">
+		<!-- adicionando as bibliotecas ao classpath -->
+		<fileset dir="${lib}" includes="*.jar" />
+	</path>
+	
+	<target name="init" description="cria o diretório que contém os arquivos .class">
+		<echo>## Criando o diretório build</echo>
+		<mkdir dir="${build}" />
+	</target>
+	
+	<target name="compile" depends="init" description="compila os fontes">
+		<echo>## Compilando os fontes</echo>
+		<javac srcdir="${src}" destdir="${build}" source="1.4" classpathref="lib.path" />
+	</target>
+	
+	<target name="empacota" description="gera o arquivo jdsengine.jar">
+		<echo>## Deletando o arquivo ${jdsengine.jar}</echo>
+		<delete file="${jdsengine.jar}" />
+		<echo>## Gerando o arquivo ${jdsengine.jar}</echo>
+		<jar destfile="${jdsengine.jar}">
+			<fileset dir="${build}" includes="**"	/>
+		</jar>
+	</target>
+	
+	<target name="dist" description="gera o arquivo zip de distribuição">
+		<echo>## Deletando o arquivo ${jdsengine.zip}</echo>
+		<delete file="${jdsengine.zip}" />
+		<echo>## Gerando o arquivo ${jdsengine.zip}</echo>
+		<zip compress="no" 	destfile="${jdsengine.zip}" 
+							basedir="." 
+							includes="${jdsengine.jar}, ${lib}/**" />
+	</target>
+	
+	<target name="build" depends="compile, empacota, dist" />
+	
+	<target name="options">
+		<echo>####### Arquivo de build da API JdsEngine #######</echo>
+		<echo>Opções  de execução:</echo>
+		<echo> </echo>
+		<echo> build    - Gera o projeto completo.</echo>
+		<echo> dist     - Gera o arquivo ZIP de distribuição.</echo>
+		<echo> empacota - Gera o arquivo JAR da API.</echo>
+		<echo> compile  - Compila os fontes.</echo>
+		<echo> init     - Cria o diretório dos arquivos CLASS.</echo>
+		<echo>#################################################</echo>
+	</target>
+	
+</project>

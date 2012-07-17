@@ -1,0 +1,17 @@
+APRESENTAÇÃO
+------------
+Este é o diretório do projeto SimAdm2Core,  uma API Java para a construção e execução de modelos de fluxos e estoques. O modelo de fluxo e estoques foi criado pelo professor Jay Forrester, sendo amplamente utilizado por uma área de estudo denominda dinâmica de sistemas. A aplicação dos conhecimentos da dinâmica de sistemas na criação de modelos, permite a realização de simulações e previsões em várias áreas do conhecimento como economia, marketing, física, biologia, administração, entre outras.
+Para mais informações a respeito da dinâmica de sistemas e modelos de fluxos e estoques, visite os sites abaixo:
+
+## TODO: rever links
+http://en.wikipedia.org/wiki/System_dynamics
+http://sysdyn.clexchange.org/road-maps/rm-toc.html
+http://www.nce.ufrj.br/ginape/wlinkit/tutorial/conceitosenvolvidos.htm
+http://www.albany.edu/cpr/sds/DL-IntroSysDyn/intro.htm
+http://www.c5.cl/ieinvestiga/actas/ribie2000/charlas/alessi.htm
+
+REQUISITOS DE EXECUÇÃO
+----------------------
+- JSE 1.4
+- JEP 2.4.0 (distribuído juntamente com o JdsEngine)
+
