@@ -4,6 +4,7 @@ import org.nfunk.jep.JEP;
 
 import core.InterpretadorException;
 import core.Modelo;
+import core.function.Min;
 
 /**
  * Interface do core.algoritmo que realiza o cálculo 
@@ -22,6 +23,7 @@ public abstract class Algoritmo{
 		parser = new JEP();
 		parser.addStandardConstants();
 		parser.addStandardFunctions();
+		parser.addFunction("min", new Min());
 	}
 	
 	public abstract void calcularVariaveisEFluxos();

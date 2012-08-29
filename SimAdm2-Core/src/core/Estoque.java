@@ -34,14 +34,14 @@ public class Estoque extends ComponenteDeModelo{
 	 * 
 	 * @param nome Nome do estoque. Lembrando que o nome dever ser único 
 	 * 			   entre todos os componentes do modelo.
-	 * @param valorInicial Variável auxiliar com o valor inicial do componente. Note que 
+	 * @param valorInicial Constante com o valor inicial do componente. Note que 
 	 * 					   o valor da variável terá influência no estoque apenas na inicialização 
 	 * 					   do mesmo.
 	 * @param modelo Modelo ao qual este estoque pertence.
 	 * @throws NomeDuplicadoException	Caso o modelo já possua um componente 
 	 * 									com o nome fornecido.
 	 */
-	public Estoque(String nome, VariavelAuxiliar valorInicial, Modelo modelo) 
+	public Estoque(String nome, Constante valorInicial, Modelo modelo) 
 	throws NomeDuplicadoException{
 		this(nome, valorInicial.getValorAtual(), modelo);
 	}

@@ -36,25 +36,48 @@ public class ModeloTestCase extends TestCase {
 		//t = 0.1
 		model.simular();
 		
-		assertEquals(1000000, e1.getHistorico().getValor(0), 0.5);
-		assertEquals(10000, f1.getHistorico().getValor(0), 0.5);
-		assertEquals(3125, f2.getHistorico().getValor(0), 0.5);
+		ValoresEsperados esperados = new ValoresEsperados(5);
+		esperados.addComponente(e1, 1000000.0, 0);
+		esperados.addComponente(e1, 1006875.0, 1);
+		esperados.addComponente(e1, 1013797.27, 2);
+		esperados.addComponente(e1, 1020767.12, 3);
+		esperados.addComponente(e1, 1027784.9, 4);
 		
-		assertEquals(1006875, e1.getHistorico().getValor(1), 0.5);
-		assertEquals(10068.75, f1.getHistorico().getValor(1), 0.5);
-		assertEquals(3146.48, f2.getHistorico().getValor(1), 0.5);
+		esperados.addComponente(f1, 10000.0, 0);
+		esperados.addComponente(f1, 10068.75, 1);
+		esperados.addComponente(f1, 10137.97, 2);
+		esperados.addComponente(f1, 10207.67, 3);
+		esperados.addComponente(f1, 10277.84, 4);
 		
-		assertEquals(1013797.27, e1.getHistorico().getValor(2), 0.5);
-		assertEquals(10137.97, f1.getHistorico().getValor(2), 0.5);
-		assertEquals(3168.11, f2.getHistorico().getValor(2), 0.5);
+		esperados.addComponente(f2, 3125.0, 0);
+		esperados.addComponente(f2, 3146.48, 1);
+		esperados.addComponente(f2, 3168.11, 2);
+		esperados.addComponente(f2, 3189.89, 3);
+		esperados.addComponente(f2, 3211.82, 4);
 		
-		assertEquals(1020767.12, e1.getHistorico().getValor(3), 0.5);
-		assertEquals(10207.67, f1.getHistorico().getValor(3), 0.5);
-		assertEquals(3189.89, f2.getHistorico().getValor(3), 0.5);
+		double delta = 0.009;
+		esperados.testarResultados(delta);
+		System.out.println("Population model (Euler) mean error: " + esperados.getErroMedio());
 		
-		assertEquals(1027784.9, e1.getHistorico().getValor(4), 0.5);
-		assertEquals(10277.84, f1.getHistorico().getValor(4), 0.5);
-		assertEquals(3211.82, f2.getHistorico().getValor(4), 0.5);
+		/*assertEquals(1000000, e1.getHistorico().getValor(0), delta);
+		assertEquals(10000, f1.getHistorico().getValor(0), delta);
+		assertEquals(3125, f2.getHistorico().getValor(0), delta);
+		
+		assertEquals(1006875, e1.getHistorico().getValor(1), delta);
+		assertEquals(10068.75, f1.getHistorico().getValor(1), delta);
+		assertEquals(3146.48, f2.getHistorico().getValor(1), delta);
+		
+		assertEquals(1013797.27, e1.getHistorico().getValor(2), delta);
+		assertEquals(10137.97, f1.getHistorico().getValor(2), delta);
+		assertEquals(3168.11, f2.getHistorico().getValor(2), delta);
+		
+		assertEquals(1020767.12, e1.getHistorico().getValor(3), delta);
+		assertEquals(10207.67, f1.getHistorico().getValor(3), delta);
+		assertEquals(3189.89, f2.getHistorico().getValor(3), delta);
+		
+		assertEquals(1027784.9, e1.getHistorico().getValor(4), delta);
+		assertEquals(10277.84, f1.getHistorico().getValor(4), delta);
+		assertEquals(3211.82, f2.getHistorico().getValor(4), delta);*/
 	}
 	
 	/**
@@ -89,25 +112,48 @@ public class ModeloTestCase extends TestCase {
 		//t = 0.1
 		model.simular();
 		
-		assertEquals(1000000, e1.getHistorico().getValor(0), 0.005);
-		assertEquals(10034.453, f1.getHistorico().getValor(0), 0.005);
-		assertEquals(3135.766, f2.getHistorico().getValor(0), 0.005);
+		ValoresEsperados esperados = new ValoresEsperados(5);
+		esperados.addComponente(e1, 1000000.0, 0);
+		esperados.addComponente(e1, 1006898.687, 1);
+		esperados.addComponente(e1, 1013844.966, 2);
+		esperados.addComponente(e1, 1020839.165, 3);
+		esperados.addComponente(e1, 1027881.615, 4);
 		
-		assertEquals(1006898.687, e1.getHistorico().getValor(1), 0.005);
-		assertEquals(10103.678, f1.getHistorico().getValor(1), 0.005);
-		assertEquals(3157.399, f2.getHistorico().getValor(1), 0.005);
+		esperados.addComponente(f1, 10034.453, 0);
+		esperados.addComponente(f1, 10103.678, 1);
+		esperados.addComponente(f1, 10173.380, 2);
+		esperados.addComponente(f1, 10243.563, 3);
+		esperados.addComponente(f1, 10314.230, 4);
 		
-		assertEquals(1013844.966, e1.getHistorico().getValor(2), 0.005);
-		assertEquals(10173.380, f1.getHistorico().getValor(2), 0.005);
-		assertEquals(3179.181, f2.getHistorico().getValor(2), 0.005);
+		esperados.addComponente(f2, 3135.766, 0);
+		esperados.addComponente(f2, 3157.399, 1);
+		esperados.addComponente(f2, 3179.181, 2);
+		esperados.addComponente(f2, 3201.113, 3);
+		esperados.addComponente(f2, 3223.197, 4);
 		
-		assertEquals(1020839.165, e1.getHistorico().getValor(3), 0.005);
-		assertEquals(10243.563, f1.getHistorico().getValor(3), 0.005);
-		assertEquals(3201.113, f2.getHistorico().getValor(3), 0.005);
+		double delta = 0.001;
+		esperados.testarResultados(delta);
+		System.out.println("Population model (Runge-Kutta4) mean error: " + esperados.getErroMedio());
 		
-		assertEquals(1027881.615, e1.getHistorico().getValor(4), 0.005);
-		assertEquals(10314.230, f1.getHistorico().getValor(4), 0.005);
-		assertEquals(3223.197, f2.getHistorico().getValor(4), 0.005);
+		/*assertEquals(1000000, e1.getHistorico().getValor(0), delta);
+		assertEquals(10034.453, f1.getHistorico().getValor(0), delta);
+		assertEquals(3135.766, f2.getHistorico().getValor(0), delta);
+		
+		assertEquals(1006898.687, e1.getHistorico().getValor(1), delta);
+		assertEquals(10103.678, f1.getHistorico().getValor(1), delta);
+		assertEquals(3157.399, f2.getHistorico().getValor(1), delta);
+		
+		assertEquals(1013844.966, e1.getHistorico().getValor(2), delta);
+		assertEquals(10173.380, f1.getHistorico().getValor(2), delta);
+		assertEquals(3179.181, f2.getHistorico().getValor(2), delta);
+		
+		assertEquals(1020839.165, e1.getHistorico().getValor(3), delta);
+		assertEquals(10243.563, f1.getHistorico().getValor(3), delta);
+		assertEquals(3201.113, f2.getHistorico().getValor(3), delta);
+		
+		assertEquals(1027881.615, e1.getHistorico().getValor(4), delta);
+		assertEquals(10314.230, f1.getHistorico().getValor(4), delta);
+		assertEquals(3223.197, f2.getHistorico().getValor(4), delta);*/
 	}
 	
 }
