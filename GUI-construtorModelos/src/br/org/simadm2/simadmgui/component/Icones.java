@@ -25,5 +25,9 @@ public abstract class Icones {
 	 * Ícone de canal.
 	 */
 	public static final ImageIcon ICON_CANAL = new ImageIcon(Icones.class.getResource("/br/org/simadm2/simadmgui/component/icons/canal.png"));
+	/**
+	 * Ícone de constante.
+	 */
+	public static final ImageIcon ICON_CONSTANTE = new ImageIcon(Icones.class.getResource("/br/org/simadm2/simadmgui/component/icons/constante.png"));
 	
 }

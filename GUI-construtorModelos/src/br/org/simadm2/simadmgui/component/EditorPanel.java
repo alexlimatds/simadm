@@ -1,14 +1,10 @@
 package br.org.simadm2.simadmgui.component;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
@@ -21,16 +17,15 @@ import javax.swing.JToolBar;
  */
 
 /**
+ * Componente que agrupa o EditorCanvas e os componentes de interação com o usuário.
+ * 
  * @author Alexandre
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 public class EditorPanel extends JPanel{
 	
-	private JLabel label;
+	private JLabel label; //para exibição de mensagens
 	private EditorCanvas canvas;
-	private JButton btEstoque, btVariavel, btFluxo, btCanal;
+	private JButton btEstoque, btVariavel, btFluxo, btCanal, btConstante;
 	private JToolBar toolBar;
 	private JPopupMenu popUpCanvas, popUpComponent;
 	
@@ -48,6 +43,7 @@ public class EditorPanel extends JPanel{
 		toolBar.setFloatable(false);
 		toolBar.add(btEstoque);
 		toolBar.add(btVariavel);
+		toolBar.add(btConstante);
 		toolBar.add(btFluxo);
 		toolBar.add(btCanal);
 		
@@ -88,6 +84,14 @@ public class EditorPanel extends JPanel{
 		btCanal.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				canvas.ativarModoDeAdicaoDeCanal();
+			}
+		});
+		
+		btConstante = new JButton(Icones.ICON_CONSTANTE);
+		btConstante.setToolTipText("Constante");
+		btConstante.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				canvas.ativarModoDeAdicaoDeConstante();
 			}
 		});
 	}

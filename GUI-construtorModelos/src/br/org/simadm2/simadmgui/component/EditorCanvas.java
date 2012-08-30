@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
 import br.org.simadm2.simadmgui.component.editor.listeners.ListenerModoAdicaoDeCanal;
+import br.org.simadm2.simadmgui.component.editor.listeners.ListenerModoAdicaoDeConstante;
 import br.org.simadm2.simadmgui.component.editor.listeners.ListenerModoAdicaoDeEstoque;
 import br.org.simadm2.simadmgui.component.editor.listeners.ListenerModoAdicaoDeFluxo;
 import br.org.simadm2.simadmgui.component.editor.listeners.ListenerModoAdicaoDeVariavel;
@@ -34,6 +35,7 @@ public class EditorCanvas extends JPanel{
 	private static final int MODO_ADICAO_DE_ESTOQUE = 2;
 	private static final int MODO_ADICAO_DE_FLUXO = 3;
 	private static final int MODO_ADICAO_DE_VARIAVEL = 4;
+	private static final int MODO_ADICAO_DE_CONSTANTE = 5;
 	
 	private CanvasMouseListener listener = new CanvasMouseListener();
 	private MouseInputAdapter listenerModoNormal = new ListenerModoNormal(this);
@@ -41,6 +43,7 @@ public class EditorCanvas extends JPanel{
 	private MouseInputAdapter listenerModoAddVariavel = new ListenerModoAdicaoDeVariavel(this);
 	private MouseInputAdapter listenerModoAddFluxo = new ListenerModoAdicaoDeFluxo(this);
 	private MouseInputAdapter listenerModoAddCanal = new ListenerModoAdicaoDeCanal(this);
+	private MouseInputAdapter listenerModoAddConstante = new ListenerModoAdicaoDeConstante(this);
 	private ComponenteSelecionavel selecionado;
 	private int contador = 1;
 	private int modoOperacao = MODO_NORMAL;
@@ -101,6 +104,12 @@ public class EditorCanvas extends JPanel{
 		ativarModoNormal();
 	}
 	
+	public void addConstante(int x, int y){
+		add(new ConstanteUI("componente " + contador), x, y);
+		contador++;
+		ativarModoNormal();
+	}
+	
 	/**
 	 * Indica que a tela deve operar no modo de operação para a adição de canal.
 	 */
@@ -132,6 +141,12 @@ public class EditorCanvas extends JPanel{
 		modoOperacao = MODO_ADICAO_DE_VARIAVEL;
 		descelecionarComponente();
 		setCursor(Cursores.VARIAVEL);
+	}
+	
+	public void ativarModoDeAdicaoDeConstante() {
+		modoOperacao = MODO_ADICAO_DE_CONSTANTE;
+		descelecionarComponente();
+		setCursor(Cursores.CONSTANTE);
 	}
 	
 	/**
@@ -207,6 +222,9 @@ public class EditorCanvas extends JPanel{
 			else if(modoOperacao == MODO_ADICAO_DE_FLUXO){
 				listenerModoAddFluxo.mouseClicked(event);
 			}
+			else if(modoOperacao == MODO_ADICAO_DE_CONSTANTE){
+				listenerModoAddConstante.mouseClicked(event);
+			}
 		}
 		
 		/* (non-Javadoc)
@@ -234,4 +252,5 @@ public class EditorCanvas extends JPanel{
 			}
 		}
 	}
+	
 }

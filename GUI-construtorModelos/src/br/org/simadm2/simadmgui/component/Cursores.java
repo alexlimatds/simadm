@@ -30,6 +30,10 @@ public abstract class Cursores {
 	 * Cursor do modo de adição de canal.
 	 */
 	public static final Cursor CANAL;
+	/**
+	 * Cursor do modo de adição de constante.
+	 */
+	public static final Cursor CONSTANTE;
 	
 	static{
 		Toolkit tool = Toolkit.getDefaultToolkit();
@@ -41,5 +45,7 @@ public abstract class Cursores {
 		FLUXO = tool.createCustomCursor(img.getImage(), new Point(15, 15), "cursor de fluxo");
 		img = new ImageIcon(Icones.class.getResource("/br/org/simadm2/simadmgui/component/icons/cursor_canal.png"));
 		CANAL = tool.createCustomCursor(img.getImage(), new Point(0, 0), "cursor de canal");
+		img = new ImageIcon(Icones.class.getResource("/br/org/simadm2/simadmgui/component/icons/cursor_constante.png"));
+		CONSTANTE = tool.createCustomCursor(img.getImage(), new Point(0, 0), "cursor de constante");
 	}
 }
