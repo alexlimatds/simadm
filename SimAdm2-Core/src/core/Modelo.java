@@ -37,10 +37,10 @@ public class Modelo {
 	 */
 	public Modelo(double dt, int inicio, int fim) throws ModeloException{
 		if(fim < inicio){
-			throw new ModeloException("fim < inicio");
+			throw new IllegalArgumentException("fim < inicio");
 		}
 		if(dt <= 0){
-			throw new ModeloException("dt <= 0");
+			throw new IllegalArgumentException("dt <= 0");
 		}
 		
 		this.dt = dt;
@@ -57,7 +57,7 @@ public class Modelo {
 			componenteTempo = new VariavelAuxiliar("tempo", String.valueOf(inicio), true, this);
 			adicionarComponente(componenteTempo);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new ModeloException(e);
 		}
 	}
 	

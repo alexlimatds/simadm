@@ -15,6 +15,7 @@ public class CoreTests extends TestCase{
 		suite.addTestSuite(ModeloPoupancaTest.class);
 		suite.addTestSuite(ModeloTestCase.class);
 		suite.addTestSuite(ModeloFinanceiroTest.class);
+		suite.addTestSuite(ComponenteInfluenciavelTest.class);
 		
 		return suite;
 	}

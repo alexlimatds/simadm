@@ -10,5 +10,8 @@ public class ModeloException extends Exception {
 	public ModeloException(String str){
 		super(str);
 	}
-
+	
+	public ModeloException(Throwable th) {
+		super(th);
+	}
 }

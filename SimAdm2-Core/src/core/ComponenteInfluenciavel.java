@@ -12,11 +12,11 @@ import java.util.Map;
  * @author Alexandre
  */
 public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
-	private Map<String, ComponenteDeModelo> influencias;
+	private Map<String, ComponenteDeModelo> influencias; //chave -> nome do componente
 	private String expressao;
 	// registra se o valor deste componente já foi calculado em um determinado ciclo
 	private boolean[] calculadoEm;
-	// indica se o valor do componente pode ser alterado durante a simulação 
+	// indica se o valor do componente pode ser alterado pelo usuário durante a simulação 
 	private boolean alteravel;
 	protected double valorAtual;
 	//indica a ordem de execução do componente
@@ -25,37 +25,24 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 	/**
 	 * Cria uma instância desta classe.
 	 * 
-	 * @param nome		Nome identificador do componente.
-	 * @param expressao	Expressão que determina o valor do componente.
-	 * @param alteravel	Indica se o valor do componente pode ser definido pelo usuário.
-	 * @param modelo	Modelo ao qual este componente pertence.
+	 * @param nome		  Nome identificador do componente.
+	 * @param expressao	  Expressão que determina o valor do componente.
+	 * @param alteravel	  Indica se o valor do componente pode ser alterado pelo usuário durante a simulação.
+	 * @param modelo	  Modelo ao qual este componente pertence.
 	 * @throws NomeDuplicadoException	Caso o modelo já possua um componente com o nome informado.
 	 * @throws InterpretadorException	Caso ocorra algum erro na avaliação da expressão.
 	 */
 	public ComponenteInfluenciavel(String nome, String expressao, 
-			boolean alteravel, ComponenteDeModelo[] influencias,
-			Modelo modelo) throws NomeDuplicadoException, 
+			boolean alteravel, Modelo modelo) throws NomeDuplicadoException, 
 			InterpretadorException{
 		
 		super(nome, modelo);
 		
-		if(influencias != null){
-			this.influencias = new HashMap<String, ComponenteDeModelo>(influencias.length);
-			for(int i = 0; i < influencias.length; i++){
-				this.influencias.put(influencias[i].getNome(), influencias[i]);
-			}
-		}
-		else{
-			this.influencias = new HashMap<String, ComponenteDeModelo>();
-		}
+		this.influencias = new HashMap<String, ComponenteDeModelo>();
 		this.expressao = expressao;
 		this.alteravel = alteravel;
 		calculadoEm = new boolean[getModelo().getQtdCiclos()];
-		//modelo.get
-		if( alteravel ){
-			//TODO : setar o valor default como resultado da expressão
-			this.valorAtual = 0;
-		}
+		
 	}
 	
 	/**
@@ -70,11 +57,16 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 	
 	/**
 	 * Insere um componente disponível para a realização do cálculo 
-	 * do valor deste componente.
+	 * do valor deste componente. Esta operação é permitida apenas quando este 
+	 * componente não é alterável.
 	 * @param componente	O componente que estará disponível na 
 	 * 						avaliação do valor da expressão.
+	 * @throws IllegalArgumentException Caso este componente seja alterável.
 	 */
 	public void adicionarInfluencia(ComponenteDeModelo componente){
+		if(isAlteravel()){
+			throw new IllegalArgumentException("Não é permitido adicionar influências a um componente alterável");
+		}
 		influencias.put(componente.getNome(), componente);
 	}
 	
@@ -114,9 +106,7 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 	
 	/**
 	 * Indica se o valor do componente pode ser definido pelo 
-	 * usuário do modelo. Em caso positivo, isso indica que o 
-	 * valor do componente é definido pelo usuário e não por 
-	 * uma equação.
+	 * usuário do modelo durante a simulação.
 	 * @return
 	 */
 	public boolean isAlteravel() {

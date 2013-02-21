@@ -21,7 +21,7 @@ public class Fluxo extends ComponenteInfluenciavel{
 	public Fluxo(String nome, String equacao, Estoque estoqueDeOrigem, 
 			Estoque estoqueDeDestino, boolean alteravel, Modelo modelo) throws 
 			NomeDuplicadoException, InterpretadorException{
-		super(nome, equacao, alteravel, null, modelo);
+		super(nome, equacao, alteravel, modelo);
 		if( estoqueDeOrigem != null ){
 			this.estoqueDeOrigem = estoqueDeOrigem;
 			estoqueDeOrigem.adicionarFluxoDeSaida(this);
