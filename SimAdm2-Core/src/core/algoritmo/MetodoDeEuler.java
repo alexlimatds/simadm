@@ -39,13 +39,14 @@ public class MetodoDeEuler extends Algoritmo {
 				parser.addVariable(c.getNome(), c.getValorAtual());
 			}
 			//avaliando a expressão
+			//TODO capturar e lançar erro de avaliação da expressão
 			parser.parseExpression(comp.getExpressao());
 			//obtendo o resultado e atualizando o valor do componente
 			if( comp instanceof Fluxo ){
-				comp.setValorAtual( parser.getValue() * modelo.getDt() );
+				comp.setValorAtual( parser.getValue() * modelo.getDt(), this );
 			}
 			else{
-				comp.setValorAtual( parser.getValue() );
+				comp.setValorAtual( parser.getValue(), this );
 			}
 		}
 	}

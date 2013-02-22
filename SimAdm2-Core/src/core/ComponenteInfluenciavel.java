@@ -3,6 +3,8 @@ package core;
 import java.util.HashMap;
 import java.util.Map;
 
+import core.algoritmo.Algoritmo;
+
 
 /**
  * Representa um componente que pode ter seu valor definido com base nos valores 
@@ -42,6 +44,7 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 		this.expressao = expressao;
 		this.alteravel = alteravel;
 		calculadoEm = new boolean[getModelo().getQtdCiclos()];
+		//TODO adicionar este componente no modelo
 		
 	}
 	
@@ -56,17 +59,11 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 	}
 	
 	/**
-	 * Insere um componente disponível para a realização do cálculo 
-	 * do valor deste componente. Esta operação é permitida apenas quando este 
-	 * componente não é alterável.
+	 * Insere um componente disponível para compor a expressão numérica deste componente.
 	 * @param componente	O componente que estará disponível na 
 	 * 						avaliação do valor da expressão.
-	 * @throws IllegalArgumentException Caso este componente seja alterável.
 	 */
 	public void adicionarInfluencia(ComponenteDeModelo componente){
-		if(isAlteravel()){
-			throw new IllegalArgumentException("Não é permitido adicionar influências a um componente alterável");
-		}
 		influencias.put(componente.getNome(), componente);
 	}
 	
@@ -88,10 +85,31 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 	}
 	
 	/**
-	 * Altera o valor atual do componente.
-	 * @param valor	O novo valor do componente.
+	 * Altera a expressão numérica deste componente.
+	 * @param expressao a nova expressão
+	 * @throws InterpretadorException Caso a nova expressão seja sintaticamente inválida. 
+	 * @throws UnsupportedOperationException Caso este componente não seja alterável.
 	 */
-	public void setValorAtual(double valor){
+	public void setExpressao(String expressao) throws InterpretadorException{
+		if(!alteravel){
+			throw new UnsupportedOperationException("Operação permitida apenas para componentes alteráveis.");
+		}
+		getModelo().validarExpressao(expressao, null);
+		
+		this.expressao = expressao;
+	}
+	
+	/**
+	 * Altera o valor atual do componente. Este método deve ser utilizado apenas pelo algoritmo de 
+	 * integração do modelo.
+	 * @param valor	    O novo valor do componente.
+	 * @param algoritmo A instância de algoritmo de integração utilizada pelo modelo.
+	 * @throws IllegalArgumentException Caso <code>algoritmo</code> não seja a instância referenciada pelo modelo.
+	 */
+	public void setValorAtual(double valor, Algoritmo algoritmo){
+		if(algoritmo != getModelo().getAlgoritmoIntegracao()){
+			throw new IllegalArgumentException("Operação não permitida.");
+		}
 		valorAtual = valor;
 		calculadoEm[ getModelo().getCicloAtual() ] = true;
 		getHistorico().setValor(getModelo().getCicloAtual(), valorAtual);

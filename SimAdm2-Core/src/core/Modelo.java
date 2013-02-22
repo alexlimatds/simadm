@@ -35,7 +35,7 @@ public class Modelo {
 	 * @param fim		Tempo final da simulação.
 	 * @throws ModeloException
 	 */
-	public Modelo(double dt, int inicio, int fim) throws ModeloException{
+	public Modelo(double dt, int inicio, int fim){
 		if(fim < inicio){
 			throw new IllegalArgumentException("fim < inicio");
 		}
@@ -57,7 +57,7 @@ public class Modelo {
 			componenteTempo = new VariavelAuxiliar("tempo", String.valueOf(inicio), true, this);
 			adicionarComponente(componenteTempo);
 		} catch (Exception e) {
-			throw new ModeloException(e);
+			throw new RuntimeException("Erro ao criar modelo: " + e.getMessage(), e);
 		}
 	}
 	
@@ -74,6 +74,7 @@ public class Modelo {
 				calcularEstoques();
 				calcularVariaveisEFluxos();
 			}
+			//TODO ajustar, pois 1 unidade de dt não é necessariamente igual a uma unidade de ciclo
 			tempo = tempo + dt;
 			cicloAtual++;
 		}
@@ -202,16 +203,22 @@ public class Modelo {
 	
 	/**
 	 * Verifica se uma expressão possui erros de sintaxe.
-	 * @param expr
+	 * @param expr           nova expressão
+	 * @param nomesVariaveis
 	 * @throws InterpretadorException
 	 */
 	public void validarExpressao(String expr, String[] nomesVariaveis) throws 
 	InterpretadorException{
+		//TODO qual a função de nomesVariaveis?
 		algoritmo.validarExpressao(expr);
 	}
 
 	public Map<String, ComponenteDeModelo> getComponentes() {
 		return componentes;
+	}
+	
+	Algoritmo getAlgoritmoIntegracao(){
+		return algoritmo;
 	}
 }
 

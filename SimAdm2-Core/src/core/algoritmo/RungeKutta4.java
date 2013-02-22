@@ -39,6 +39,7 @@ public class RungeKutta4 extends Algoritmo {
 	 * atual da simulação.
 	 */
 	public void calcularVariaveisEFluxos() {
+		//TODO unificar código repetido aqui e em MetodoDeEuler
 		if( modelo.getCicloAtual() == 0 ){
 			for(Iterator it = modelo.getEstoques().iterator(); it.hasNext();){
 				mapaFatores.put(((Estoque)it.next()).getNome(), new double[4]);
@@ -291,7 +292,7 @@ public class RungeKutta4 extends Algoritmo {
 				 2 * avaliarFluxo(f, 1, 2) + 
 				 2 * avaliarFluxo(f, 2, 2) +
 				 avaliarFluxo(f, 3, 1)) * dt / 6;
-		f.setValorAtual(valor);
+		f.setValorAtual(valor, this);
 	}
 	
 	/**
@@ -355,6 +356,6 @@ public class RungeKutta4 extends Algoritmo {
 			parser.addVariable(c.getNome(), c.getValorAtual());
 		}
 		parser.parseExpression(var.getExpressao());
-		var.setValorAtual( parser.getValue() );
+		var.setValorAtual( parser.getValue(), this );
 	}
 }
