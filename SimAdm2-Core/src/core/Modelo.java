@@ -21,7 +21,6 @@ public class Modelo {
 	private double fim;
 	private double tempo;
 	private int qtdCiclos;
-	private int cicloAtual;
 	private VariavelAuxiliar componenteTempo;
 	private Algoritmo algoritmo;
 	//contém os componentes influenciáveis em ordem de avaliação.
@@ -47,7 +46,7 @@ public class Modelo {
 		this.inicio = inicio;
 		this.tempo = inicio;
 		this.fim = fim;
-		this.qtdCiclos = (int)((this.fim - this.inicio) / this.dt) + 1;
+		this.qtdCiclos = (int)(this.fim - this.inicio + 1);
 		componentes = new HashMap<String, ComponenteDeModelo>();
 		estoques = new HashSet<Estoque>();
 		this.algoritmo = new MetodoDeEuler(this);
@@ -62,9 +61,21 @@ public class Modelo {
 	}
 	
 	/**
-	 * Executa um step (dt) de simulação.
+	 * Executa uma unidade de tempo (ciclo) de simulação.
 	 */
 	public void simular() throws InterpretadorException{
+		if(tempo <= fim){
+			int steps = (int)(1 / dt);
+			for(int i = 0; i < steps; i++){
+				executarStep();
+			}
+		}
+	}
+	
+	/**
+	 * Executa um step (dt) de simulação.
+	 */
+	public void executarStep() throws InterpretadorException{
 		if(tempo <= fim){
 			if(tempo == inicio){
 				prepapararListaDeAvaliacao();
@@ -74,9 +85,7 @@ public class Modelo {
 				calcularEstoques();
 				calcularVariaveisEFluxos();
 			}
-			//TODO ajustar, pois 1 unidade de dt não é necessariamente igual a uma unidade de ciclo
 			tempo = tempo + dt;
-			cicloAtual++;
 		}
 	}
 	
@@ -155,7 +164,8 @@ public class Modelo {
 	}
 
 	public int getCicloAtual() {
-		return cicloAtual;
+		//return (int)Math.ceil(cicloAtual);
+		return (int)Math.ceil(tempo);
 	}
 
 	public int getQtdCiclos() {

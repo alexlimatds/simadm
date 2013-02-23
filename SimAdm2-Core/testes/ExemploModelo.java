@@ -7,16 +7,11 @@ import core.algoritmo.RungeKutta4;
 
 /*
  * Created on 21/03/2007
- *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 
 /**
- * @author Servidor
+ * @author Alexandre
  *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 public class ExemploModelo {
 
