@@ -5,11 +5,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 import core.ComponenteDeModelo;
-import core.ComponenteInfluenciavel;
 import core.Estoque;
 import core.Fluxo;
 import core.Modelo;
-import core.VariavelAuxiliar;
 
 /**
  * Classe que calcula o valor dos fluxos e 
@@ -31,29 +29,6 @@ public class RungeKutta4 extends Algoritmo {
 		super(modelo);
 		//o mapa abaixo armazena os fatores K1, K2, K3 e K4 de cada estoque
 		mapaFatores = new HashMap();
-	}
-	
-	/**
-	 * Calcula os valores das variáveis auxiliares e fluxos no tempo 
-	 * atual da simulação.
-	 */
-	public void calcularVariaveisEFluxos() {
-		//TODO unificar código repetido aqui e em MetodoDeEuler
-		if( modelo.getCicloAtual() == 0 ){
-			for(Iterator it = modelo.getEstoques().iterator(); it.hasNext();){
-				mapaFatores.put(((Estoque)it.next()).getNome(), new double[4]);
-			}
-		}
-		
-		for(Iterator it = modelo.getListaDeAvaliacao().iterator(); it.hasNext();){
-			ComponenteInfluenciavel comp = (ComponenteInfluenciavel)it.next();
-			if( comp instanceof VariavelAuxiliar ){
-				calcularVariavel((VariavelAuxiliar)comp);
-			}
-			else{
-				calcularValorDeFluxo((Fluxo)comp, modelo.getDt());
-			}
-		}
 	}
 	
 	/**
@@ -264,15 +239,21 @@ public class RungeKutta4 extends Algoritmo {
 	 * Calcula o valor de um fluxo no tempo atual da simulação.
 	 * 
 	 * @param f	Fluxo que se deseja calcular o valor.
-	 * @param dt	O dt utilizado na simulação.
 	 */
-	private void calcularValorDeFluxo(Fluxo f, double dt) {
+	@Override
+	public void calcularFluxo(Fluxo f) {
+		if( modelo.getCicloAtual() == 0 ){
+			for(Iterator it = modelo.getEstoques().iterator(); it.hasNext();){
+				mapaFatores.put(((Estoque)it.next()).getNome(), new double[4]);
+			}
+		}
 		calcularFatores(f);
 		double valor;
+		//TODO acrescentar validação da expressão
 		valor = (avaliarFluxo(f, 0, 1) + 
 				 2 * avaliarFluxo(f, 1, 2) + 
 				 2 * avaliarFluxo(f, 2, 2) +
-				 avaliarFluxo(f, 3, 1)) * dt / 6;
+				 avaliarFluxo(f, 3, 1)) * modelo.getDt() / 6;
 		f.setValorAtual(valor, this);
 	}
 	
@@ -324,19 +305,4 @@ public class RungeKutta4 extends Algoritmo {
 		return 0;
 	}
 	
-	/**
-	 * Calcula o valor de uma variável no instante atual da simulação. 
-	 * Note que o valor da variável é atualizado no objeto recebido 
-	 * como parâmetro.
-	 * @param var	A variável que se deseja calcular o valor.
-	 */
-	private void calcularVariavel(VariavelAuxiliar var){
-		ComponenteDeModelo c;
-		for(Iterator comps = var.getInfluencias().values().iterator(); comps.hasNext();){
-			c = (ComponenteDeModelo)comps.next();
-			parser.addVariable(c.getNome(), c.getValorAtual());
-		}
-		parser.parseExpression(var.getExpressao());
-		var.setValorAtual( parser.getValue(), this );
-	}
 }

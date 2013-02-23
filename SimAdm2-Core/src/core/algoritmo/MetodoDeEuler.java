@@ -3,7 +3,6 @@ package core.algoritmo;
 import java.util.Iterator;
 
 import core.ComponenteDeModelo;
-import core.ComponenteInfluenciavel;
 import core.Fluxo;
 import core.Modelo;
 
@@ -25,28 +24,23 @@ public class MetodoDeEuler extends Algoritmo {
 	}
 	
 	/**
-	 * Calcula o valor dos fluxos e das variáveis auxiliares no tempo atual da simulação.
+	 * Calcula o valor de um fluxo no tempo atual da simulação.
+	 * 
+	 * @param f	Fluxo que se deseja calcular o valor.
 	 */
-	public void calcularVariaveisEFluxos() {
-		for(Iterator it = modelo.getListaDeAvaliacao().iterator(); it.hasNext();){
-			ComponenteInfluenciavel comp = (ComponenteInfluenciavel)it.next();
-			//adicionando as variáveis no parser
-			Iterator vars = comp.getInfluencias().values().iterator();
-			ComponenteDeModelo c;
-			while(vars.hasNext()){
-				c = (ComponenteDeModelo)vars.next();
-				parser.addVariable(c.getNome(), c.getValorAtual());
-			}
-			//avaliando a expressão
-			//TODO capturar e lançar erro de avaliação da expressão
-			parser.parseExpression(comp.getExpressao());
-			//obtendo o resultado e atualizando o valor do componente
-			if( comp instanceof Fluxo ){
-				comp.setValorAtual( parser.getValue() * modelo.getDt(), this );
-			}
-			else{
-				comp.setValorAtual( parser.getValue(), this );
-			}
+	@Override
+	public void calcularFluxo(Fluxo f) {
+		//adicionando as variáveis no parser
+		Iterator vars = f.getInfluencias().values().iterator();
+		ComponenteDeModelo c;
+		while(vars.hasNext()){
+			c = (ComponenteDeModelo)vars.next();
+			parser.addVariable(c.getNome(), c.getValorAtual());
 		}
+		//avaliando a expressão
+		//TODO capturar e lançar erro de avaliação da expressão
+		parser.parseExpression(f.getExpressao());
+		//obtendo o resultado e atualizando o valor do componente
+		f.setValorAtual( parser.getValue() * modelo.getDt(), this );
 	}
 }

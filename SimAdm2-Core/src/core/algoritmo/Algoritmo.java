@@ -4,10 +4,13 @@ import java.util.Iterator;
 
 import org.nfunk.jep.JEP;
 
+import core.ComponenteDeModelo;
+import core.ComponenteInfluenciavel;
 import core.Estoque;
 import core.Fluxo;
 import core.InterpretadorException;
 import core.Modelo;
+import core.VariavelAuxiliar;
 import core.function.Min;
 
 /**
@@ -30,7 +33,44 @@ public abstract class Algoritmo{
 		parser.addFunction("min", new Min());
 	}
 	
-	public abstract void calcularVariaveisEFluxos();
+	/**
+	 * Calcula o valor de todas as veriáveis auxiliares e fluxos do modelo.
+	 */
+	public void calcularVariaveisEFluxos(){
+		for(Iterator it = modelo.getListaDeAvaliacao().iterator(); it.hasNext();){
+			ComponenteInfluenciavel comp = (ComponenteInfluenciavel)it.next();
+			if( comp instanceof VariavelAuxiliar ){
+				calcularVariavel((VariavelAuxiliar)comp);
+			}
+			else{
+				calcularFluxo((Fluxo)comp);
+			}
+		}
+	}
+	
+	/**
+	 * Calcula o valor de um fluxo no tempo atual da simulação.
+	 * 
+	 * @param f	Fluxo que se deseja calcular o valor.
+	 */
+	protected abstract void calcularFluxo(Fluxo f);
+	
+	/**
+	 * Calcula o valor de uma variável auxiliar no instante atual da simulação. 
+	 * Note que o valor da variável é atualizado no objeto recebido 
+	 * como parâmetro.
+	 * @param var	A variável que se deseja calcular o valor.
+	 */
+	private void calcularVariavel(VariavelAuxiliar var){
+		ComponenteDeModelo c;
+		for(Iterator comps = var.getInfluencias().values().iterator(); comps.hasNext();){
+			c = (ComponenteDeModelo)comps.next();
+			parser.addVariable(c.getNome(), c.getValorAtual());
+		}
+		//TODO acrescentar validação da expressão
+		parser.parseExpression(var.getExpressao());
+		var.setValorAtual( parser.getValue(), this );
+	}
 	
 	/**
 	 * Calcula o valor dos estoques no tempo atual de simulação. Note que 
