@@ -25,8 +25,7 @@ public class RungeKutta4 extends Algoritmo {
 	/**
 	 * Cria uma instância desta classe.
 	 * 
-	 * @param parser	Objeto capaz de avaliar expressões
-	 * 					matemáticas.
+	 * @param modelo
 	 */
 	public RungeKutta4(Modelo modelo){
 		super(modelo);

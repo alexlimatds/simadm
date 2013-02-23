@@ -1,9 +1,9 @@
 package core.algoritmo;
 
 import java.util.Iterator;
+
 import core.ComponenteDeModelo;
 import core.ComponenteInfluenciavel;
-import core.Estoque;
 import core.Fluxo;
 import core.Modelo;
 
@@ -18,8 +18,7 @@ public class MetodoDeEuler extends Algoritmo {
 	/**
 	 * Cria uma instância desta classe.
 	 * 
-	 * @param parser	Objeto capaz de avaliar expressões
-	 * 					matemáticas.
+	 * @param modelo
 	 */
 	public MetodoDeEuler(Modelo modelo){
 		super(modelo);
