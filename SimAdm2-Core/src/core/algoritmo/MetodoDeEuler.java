@@ -50,21 +50,4 @@ public class MetodoDeEuler extends Algoritmo {
 			}
 		}
 	}
-	
-	/**
-	 * Calcula o valor dos estoques no tempo atual da simulação.
-	 */
-	public void calcularEstoques() {
-		for(Iterator it = modelo.getEstoques().iterator(); it.hasNext();){
-			Estoque est = (Estoque)it.next();
-			double inflows = 0, outflows = 0;
-			for(Iterator fluxos = est.getFluxosDeEntrada().iterator(); fluxos.hasNext();){
-				inflows = ((Fluxo)fluxos.next()).getValorAtual();
-			}
-			for(Iterator fluxos = est.getFluxosDeSaida().iterator(); fluxos.hasNext();){
-				outflows = ((Fluxo)fluxos.next()).getValorAtual();
-			}
-			est.setValorAtual(est.getValorAtual() + inflows - outflows);
-		}
-	}
 }

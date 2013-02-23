@@ -58,24 +58,6 @@ public class RungeKutta4 extends Algoritmo {
 	}
 	
 	/**
-	 * Calcula o valor dos estoques no tempo atual de simulação. Note que 
-	 * os valores dos estoques são atualizados nos próprios objetos.
-	 */
-	public void calcularEstoques() {
-		for(Iterator it = modelo.getEstoques().iterator(); it.hasNext();){
-			Estoque est = (Estoque)it.next();
-			double inflows = 0, outflows = 0;
-			for(Iterator fluxos = est.getFluxosDeEntrada().iterator(); fluxos.hasNext();){
-				inflows = ((Fluxo)fluxos.next()).getValorAtual();
-			}
-			for(Iterator fluxos = est.getFluxosDeSaida().iterator(); fluxos.hasNext();){
-				outflows = ((Fluxo)fluxos.next()).getValorAtual();
-			}
-			est.setValorAtual(est.getValorAtual() + inflows - outflows);
-		}
-	}
-	
-	/**
 	 * Calcula os fatores (K1, K2, K3 e K4) de todos os estoques que 
 	 * possuem influência sobre determinado fluxo.
 	 * @param f	O fluxo que se deseja calcular os fatores.

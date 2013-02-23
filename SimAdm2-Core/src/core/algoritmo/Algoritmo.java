@@ -1,7 +1,11 @@
 package core.algoritmo;
 
+import java.util.Iterator;
+
 import org.nfunk.jep.JEP;
 
+import core.Estoque;
+import core.Fluxo;
 import core.InterpretadorException;
 import core.Modelo;
 import core.function.Min;
@@ -28,7 +32,23 @@ public abstract class Algoritmo{
 	
 	public abstract void calcularVariaveisEFluxos();
 	
-	public abstract void calcularEstoques();
+	/**
+	 * Calcula o valor dos estoques no tempo atual de simulação. Note que 
+	 * os valores dos estoques são atualizados nos próprios objetos.
+	 */
+	public void calcularEstoques(){
+		for(Iterator it = modelo.getEstoques().iterator(); it.hasNext();){
+			Estoque est = (Estoque)it.next();
+			double inflows = 0, outflows = 0;
+			for(Iterator fluxos = est.getFluxosDeEntrada().iterator(); fluxos.hasNext();){
+				inflows = ((Fluxo)fluxos.next()).getValorAtual();
+			}
+			for(Iterator fluxos = est.getFluxosDeSaida().iterator(); fluxos.hasNext();){
+				outflows = ((Fluxo)fluxos.next()).getValorAtual();
+			}
+			est.setValorAtual(est.getValorAtual() + inflows - outflows);
+		}
+	}
 	
 	public void validarExpressao(String expr) throws 
 	InterpretadorException{
