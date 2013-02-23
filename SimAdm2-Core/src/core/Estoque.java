@@ -26,7 +26,6 @@ public class Estoque extends ComponenteDeModelo{
 		this.valorAtual = valorInicial;
 		fluxosDeEntrada = new ArrayList<Fluxo>();
 		fluxosDeSaida = new ArrayList<Fluxo>();
-		modelo.adicionarComponente(this);
 	}
 	
 	/**

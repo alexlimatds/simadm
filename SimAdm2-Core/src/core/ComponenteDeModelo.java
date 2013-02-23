@@ -17,7 +17,8 @@ public abstract class ComponenteDeModelo {
 	 * Cria uma instância desta classe.
 	 * 
 	 * @param nome	Identificador deste componente.
-	 * @param modelo	Modelo ao qual este componente pertence.
+	 * @param modelo	Modelo ao qual este componente pertence. Note que este construtor já 
+	 * 					adiciona este componente a <code>modelo</code>.
 	 * @throws NomeDuplicadoException	Caso o modelo já possua um 
 	 * 			componente com o nome passado como parâmetro.
 	 */

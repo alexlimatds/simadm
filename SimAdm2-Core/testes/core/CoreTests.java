@@ -13,7 +13,7 @@ public class CoreTests extends TestCase{
 	public static Test suite(){
 		TestSuite suite = new TestSuite();
 		suite.addTestSuite(ModeloPoupancaTest.class);
-		suite.addTestSuite(ModeloTestCase.class);
+		suite.addTestSuite(ModeloTest.class);
 		suite.addTestSuite(ModeloFinanceiroTest.class);
 		suite.addTestSuite(ComponenteInfluenciavelTest.class);
 		

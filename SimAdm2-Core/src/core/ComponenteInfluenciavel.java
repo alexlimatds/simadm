@@ -29,7 +29,7 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 	 * 
 	 * @param nome		  Nome identificador do componente.
 	 * @param expressao	  Expressão que determina o valor do componente.
-	 * @param alteravel	  Indica se o valor do componente pode ser alterado pelo usuário durante a simulação.
+	 * @param alteravel	  Indica se a expressão do componente pode ser alterada pelo usuário durante a simulação.
 	 * @param modelo	  Modelo ao qual este componente pertence.
 	 * @throws NomeDuplicadoException	Caso o modelo já possua um componente com o nome informado.
 	 * @throws InterpretadorException	Caso ocorra algum erro na avaliação da expressão.
@@ -38,14 +38,12 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 			boolean alteravel, Modelo modelo) throws NomeDuplicadoException, 
 			InterpretadorException{
 		
-		super(nome, modelo);
+		super(nome, modelo); //adiciona este componente ao modelo
 		
 		this.influencias = new HashMap<String, ComponenteDeModelo>();
 		this.expressao = expressao;
 		this.alteravel = alteravel;
 		calculadoEm = new boolean[getModelo().getQtdCiclos()];
-		//TODO adicionar este componente no modelo
-		
 	}
 	
 	/**
@@ -123,7 +121,7 @@ public abstract class ComponenteInfluenciavel extends ComponenteDeModelo {
 	}
 	
 	/**
-	 * Indica se o valor do componente pode ser definido pelo 
+	 * Indica se a expressão do componente pode ser alterada pelo 
 	 * usuário do modelo durante a simulação.
 	 * @return
 	 */

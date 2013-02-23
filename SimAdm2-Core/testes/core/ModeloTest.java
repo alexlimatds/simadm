@@ -3,7 +3,7 @@ package core;
 import core.algoritmo.RungeKutta4;
 import junit.framework.TestCase;
 
-public class ModeloTestCase extends TestCase {
+public class ModeloTest extends TestCase {
 	
 	/**
 	 * Testa o método de execução de simulação verificando os valores 
@@ -156,4 +156,21 @@ public class ModeloTestCase extends TestCase {
 		assertEquals(3223.197, f2.getHistorico().getValor(4), delta);*/
 	}
 	
+	public void testAdicionarComponente() throws InterpretadorException{
+		Modelo modelo = new Modelo(1, 1, 10);
+		Estoque e = null;
+		try{
+			e = new Estoque("comp1", 100.0, modelo);
+		}catch(Exception ex){
+			fail("Gerou exceção indevida: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+		
+		//adiciona componente com mesmo nome -> deve gerar execeção
+		try{
+			new Fluxo("comp1", "30.0", e, null, false, modelo);
+			fail("Deveria ter gerado exceção");
+		}catch(NomeDuplicadoException ex){}
+		
+	}
 }

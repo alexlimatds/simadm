@@ -172,6 +172,11 @@ public class Modelo {
 	
 	public void adicionarComponente(ComponenteDeModelo componente) 
 	throws NomeDuplicadoException{
+		ComponenteDeModelo atual = componentes.get(componente.getNome());
+		if(atual != null && atual != componente){
+			throw new NomeDuplicadoException();
+		}
+		
 		componentes.put(componente.getNome(), componente);
 		if( componente instanceof Estoque ){
 			estoques.add((Estoque)componente);
