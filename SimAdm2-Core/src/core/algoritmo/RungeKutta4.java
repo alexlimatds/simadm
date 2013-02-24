@@ -7,6 +7,7 @@ import java.util.Map;
 import core.ComponenteDeModelo;
 import core.Estoque;
 import core.Fluxo;
+import core.InterpretadorException;
 import core.Modelo;
 
 /**
@@ -249,7 +250,6 @@ public class RungeKutta4 extends Algoritmo {
 		}
 		calcularFatores(f);
 		double valor;
-		//TODO acrescentar validação da expressão
 		valor = (avaliarFluxo(f, 0, 1) + 
 				 2 * avaliarFluxo(f, 1, 2) + 
 				 2 * avaliarFluxo(f, 2, 2) +
@@ -260,9 +260,9 @@ public class RungeKutta4 extends Algoritmo {
 	/**
 	 * Obtém o resultado da expressão de um fluxo. Note que o valor determinado 
 	 * não é multiplicado por DT.
-	 * @param f	Fluxo que se deseja avaliar.
-	 * @param fator	Fator a ser adicionado aos estoques que influenciam o fluxo.
-	 * @param divisor	Valor pelo qual o fator será dividido antes de ser somado ao estoque. 
+	 * @param f        Fluxo que se deseja avaliar.
+	 * @param fator    Fator a ser adicionado aos estoques que influenciam o fluxo.
+	 * @param divisor  Valor pelo qual o fator será dividido antes de ser somado ao estoque. 
 	 * 1 para K1, 2 para K2, 3 para K3, 4 para K4 e 0 (zero) para nenhum.
 	 * @return	O resultado da avaliação da expressão.
 	 */
@@ -278,6 +278,11 @@ public class RungeKutta4 extends Algoritmo {
 			parser.addVariable(comp.getNome(), comp.getValorAtual() + complemento / divisor);
 		}
 		parser.parseExpression(f.getExpressao());
+		if(parser.hasError()){
+			InterpretadorException ex = new InterpretadorException(
+					"Erro ao avaliar fluxo " + f.getNome() + ": " + parser.getErrorInfo());
+			throw new RuntimeException(ex);
+		}
 		return parser.getValue();
 	}
 	

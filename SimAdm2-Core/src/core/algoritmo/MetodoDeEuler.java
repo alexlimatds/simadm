@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import core.ComponenteDeModelo;
 import core.Fluxo;
+import core.InterpretadorException;
 import core.Modelo;
 
 /**
@@ -38,8 +39,12 @@ public class MetodoDeEuler extends Algoritmo {
 			parser.addVariable(c.getNome(), c.getValorAtual());
 		}
 		//avaliando a expressão
-		//TODO capturar e lançar erro de avaliação da expressão
 		parser.parseExpression(f.getExpressao());
+		if(parser.hasError()){
+			InterpretadorException ex = new InterpretadorException(
+					"Erro avaliar " + f.getNome() + ": " + parser.getErrorInfo());
+			throw new RuntimeException(ex);
+		}
 		//obtendo o resultado e atualizando o valor do componente
 		f.setValorAtual( parser.getValue() * modelo.getDt(), this );
 	}

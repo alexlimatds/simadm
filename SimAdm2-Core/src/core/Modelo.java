@@ -219,12 +219,11 @@ public class Modelo {
 	/**
 	 * Verifica se uma expressão possui erros de sintaxe.
 	 * @param expr           nova expressão
-	 * @param nomesVariaveis
+	 * @param nomesVariaveis variáveis (influeências) envolvidas na expressão
 	 * @throws InterpretadorException
 	 */
 	public void validarExpressao(String expr, String[] nomesVariaveis) throws 
 	InterpretadorException{
-		//TODO qual a função de nomesVariaveis?
 		algoritmo.validarExpressao(expr);
 	}
 

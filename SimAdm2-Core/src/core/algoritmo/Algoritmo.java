@@ -62,13 +62,18 @@ public abstract class Algoritmo{
 	 * @param var	A variável que se deseja calcular o valor.
 	 */
 	private void calcularVariavel(VariavelAuxiliar var){
+		//Adiciona as variáveis (influências) da expressão
 		ComponenteDeModelo c;
 		for(Iterator comps = var.getInfluencias().values().iterator(); comps.hasNext();){
 			c = (ComponenteDeModelo)comps.next();
 			parser.addVariable(c.getNome(), c.getValorAtual());
 		}
-		//TODO acrescentar validação da expressão
+		//Avalia a expressão e atualiza o valor de var
 		parser.parseExpression(var.getExpressao());
+		if(parser.hasError()){
+			InterpretadorException causa = new InterpretadorException(parser.getErrorInfo());
+			throw new RuntimeException(causa);
+		}
 		var.setValorAtual( parser.getValue(), this );
 	}
 	
