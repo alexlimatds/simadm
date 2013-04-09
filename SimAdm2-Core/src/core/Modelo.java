@@ -65,6 +65,9 @@ public class Modelo {
 		return descricao;
 	}
 	
+	public void setDescricao(String descricao){
+		this.descricao = descricao;
+	}
 	/**
 	 * Executa uma unidade de tempo (ciclo) de simulação.
 	 */
