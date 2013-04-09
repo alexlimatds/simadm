@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+<h:graphicImage value="/images/image.jpg" />
+<h:form>
+
+    <p:growl id="messages"/>
+    <p:menubar>
+        <p:menuitem value="início" icon="ui-icon-document">
+        </p:menuitem>
+         <p:submenu label="Cadastros" icon="ui-icon-document">
+            <p:menuitem value="Professor" url="" />
+            <p:menuitem value="Turma" url="cadastrarTurmas.xhtml" />
+            <p:separator />
+        </p:submenu>
+        <p:submenu label="Modelos" icon="ui-icon-gear">
+            <p:menuitem value="Ver Modelos" url="">
+            </p:menuitem>
+            <p:menuitem value="Cadastrar Modelos" url="CadastrarModelo.xhtml">
+            </p:menuitem>
+        </p:submenu>
+    </p:menubar>
+</h:form>
+<br/>
+<br/>
+<center>
+<h1>Simular Modelo</h1>
+<h:outputText value="Descrição: " />
+<h:outputText value="#{cadastroTurmaMB.turma.descricao}" /> - 
+<h:outputText value=" Curso: " />
+<h:outputText value="#{cadastroTurmaMB.turma.curso}" />
+</center>
+<center>
+<h:form>
+
+<p:dataTable var="componente" value="#{modeloSelecionadoBean.componentes}">
+	<p:column headerText="Componente">
+		#{componente.nome}
+	</p:column>
+	<p:column>
+		<h:inputText value="#{componente.expressao}"/>
+	</p:column>
+</p:dataTable>
+<p:commandButton value="Simular" action="#{modeloSelecionadoBean.simular()}" update=":tabela @form" 
+	process="@form"/>
+
+<p:commandButton value="Reiniciar" action="#{modeloSelecionadoBean.reiniciarModelo()}" update=":tabela @form">
+		</p:commandButton>
+
+</h:form>
+
+</center>
+
+<center>
+<br/>
+<br/>
+<br/>
+<br/>
+<p:dataTable id="tabela" var="historico" value="#{modeloSelecionadoBean.historicos}">
+	<p:column headerText="Componente">
+		#{historico.componente.nome}
+	</p:column>
+	<p:columns var="coluna" value="#{modeloSelecionadoBean.colunas}" columnIndexVar="colIndex">
+		<f:facet name="header">#{coluna}</f:facet>
+		<h:outputText value="#{historico.valores[colIndex]}" />
+	</p:columns>
+</p:dataTable>
+<br/>
+<br/>
+<br/>
+
+<br/>
+<br/>
+</center>	
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+				 <p:menubar autoDisplay="false">
+       
+    </p:menubar>
+</h:body>
+</html>

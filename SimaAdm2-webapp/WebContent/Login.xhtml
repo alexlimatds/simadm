@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+<h:graphicImage value="/images/image.jpg" />
+<h:form>
+
+    <p:growl id="messages"/>
+    <p:menubar>
+        <p:menuitem value="" >
+        </p:menuitem>
+    </p:menubar>
+</h:form>
+<br/>
+<br/>
+<center>
+<h:form id="form">
+		
+    <p:panel header="LOGIN" style="width: 30%">
+        <h:panelGrid columns="2" cellpadding="5" cellspacing="3">
+            <h:outputText value="Login: " />
+            <p:inputText id="login" value="" />
+
+            <h:outputText value="Senha " />
+            <p:password value=""/>
+            <p:commandButton value="Entrar" action="#{url.Inicio()}"></p:commandButton>
+            <p:commandButton value="cancelar"></p:commandButton>
+        </h:panelGrid>
+    </p:panel>
+    </h:form>
+		
+</center>	
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+				 <p:menubar autoDisplay="false">
+       
+    </p:menubar>
+</h:body>
+</html>

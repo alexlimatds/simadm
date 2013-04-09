@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="SimaAdm2-webapp">
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SimAdm">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="simadm"/>
-        <property name="java-output-path" value="/SimaAdm2-webapp/build/classes"/>
+        <dependent-module archiveName="SimAdm2-Core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SimAdm2-Core/SimAdm2-Core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="SimAdm"/>
+        <property name="java-output-path" value="/SimAdm/build/classes"/>
     </wb-module>
 </project-modules>
