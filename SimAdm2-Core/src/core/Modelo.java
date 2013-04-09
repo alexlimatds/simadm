@@ -25,6 +25,7 @@ public class Modelo {
 	private Algoritmo algoritmo;
 	//contém os componentes influenciáveis em ordem de avaliação.
 	private List<ComponenteInfluenciavel> listaDeAvaliacao;
+	private String descricao;
 	
 	/**
 	 * Cria um novo modelo.
@@ -58,6 +59,10 @@ public class Modelo {
 		} catch (Exception e) {
 			throw new RuntimeException("Erro ao criar modelo: " + e.getMessage(), e);
 		}
+	}
+	
+	public String getDescricao(){
+		return descricao;
 	}
 	
 	/**
