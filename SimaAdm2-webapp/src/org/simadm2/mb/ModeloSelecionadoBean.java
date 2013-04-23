@@ -15,6 +15,8 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.catalina.ha.backend.CollectedInfo;
 import org.simadm2.model.ModeloRepositorio;
+import org.simadm2.model.Turma;
+import org.simadm2.model.TurmaRepositorio;
 
 import util.Relatorio;
 import core.ComponenteDeModelo;
@@ -39,6 +41,9 @@ public class ModeloSelecionadoBean implements Serializable{
 	private List<VariavelAuxiliar> decisoes = new ArrayList<VariavelAuxiliar>();
 	private ModeloRepositorio repositorioModelo = new ModeloRepositorio();
 	private List<Modelo> modelos = new ArrayList<Modelo>();
+	private String codAcesso;
+	private Turma turm;
+	private String cod;
 	
 	@PostConstruct
 	public void init() {
@@ -121,9 +126,17 @@ public class ModeloSelecionadoBean implements Serializable{
 		printReport();
 	}
 	
+	
 	public String getPag(){
-		
+		if(codAcesso.equals(cod)){
+			cod = "";
 		return "ExemploModelo.xhtml";
+		}
+		else{
+			cod = "";
+			return "Turmas.xhtml";
+			
+		}
 	}
 	
 	public StringBuilder getBuilder() {
@@ -144,7 +157,7 @@ public class ModeloSelecionadoBean implements Serializable{
 	}
 	
 	/**
-	 * Retorna os cabeçalhos das colunas de histórico dos ciclos.
+	 * Retorna os cabeï¿½alhos das colunas de histï¿½rico dos ciclos.
 	 * @return
 	 */
 	public List<String> getColunas(){
@@ -202,7 +215,7 @@ public class ModeloSelecionadoBean implements Serializable{
 				maiorNome = comp.getNome().length();
 			}
 		}
-		//primeira linha do relatório 
+		//primeira linha do relatï¿½rio 
 		//StringBuilder builder = new StringBuilder();
 		builder.append(formate("componente") + "|");
 		for(int i = 0; i < model.getQtdCiclos(); i++){
@@ -263,6 +276,30 @@ public class ModeloSelecionadoBean implements Serializable{
 			b.append(" ");
 		}
 		return b.toString();
+	}
+
+	public String getCodAcesso() {
+		return codAcesso;
+	}
+
+	public void setCodAcesso(String codAcesso) {
+		this.codAcesso = codAcesso;
+	}
+
+	public Turma getTurm() {
+		return turm;
+	}
+
+	public void setTurm(Turma turm) {
+		this.turm = turm;
+	}
+
+	public String getCod() {
+		return cod;
+	}
+
+	public void setCod(String cod) {
+		this.cod = cod;
 	}
 	
 	

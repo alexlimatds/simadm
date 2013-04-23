@@ -59,16 +59,16 @@
 	</p:column>
 	<p:column>
 		<h:outputText value="Senha: " />
-		<h:inputText value="" />
+		<h:inputText value="#{modeloSelecionadoBean.cod}" />
 		<p:commandButton value="Entrar" action="#{modeloSelecionadoBean.getPag()}" ajax="false">
 		 <f:setPropertyActionListener value="#{cadastroTurmaMB.modeloSelecionado}" target="#{modeloSelecionadoBean.model}" />
+		 <f:setPropertyActionListener value="#{cadastroTurmaMB.turma.codigoAcesso}" target="#{modeloSelecionadoBean.codAcesso}" />
 		</p:commandButton>
 	</p:column>
 </p:dataTable>
 </h:form>
 
 </center>
-
 <center>
 <br/>
 <br/>
