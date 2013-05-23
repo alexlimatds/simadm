@@ -17,7 +17,7 @@
 
     <p:growl id="messages"/>
     <p:menubar>
-        <p:menuitem value="início" icon="ui-icon-document" action="Inicio.xhtml">
+        <p:menuitem value="início" icon="ui-icon-document" url="Inicio.xhtml">
         </p:menuitem>
          <p:submenu label="Cadastros" icon="ui-icon-document">
             <p:menuitem value="Professor" url="" />
@@ -67,9 +67,10 @@
 	</p:column>
 </p:dataTable>
 </h:form>
-
 </center>
 <center>
+<br/>
+<h:outputText value="#{modeloSelecionadoBean.erro}" style="color: red;" />
 <br/>
 <br/>
 <br/>
