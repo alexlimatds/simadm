@@ -32,23 +32,18 @@
         </p:submenu>
     </p:menubar>
 </h:form>
-<br/>
-<br/>
+
 <center>
 <h1>Turmas</h1>
-<br/>
-<br/>
-
 </center>
-<br/>
+
 <center>
 <h:form>
-
-<p:dataTable id="tabela" var="turmas" value="#{cadastroTurmaMB.turmas}">
-<p:column headerText="Modelos">
-		<p:selectOneMenu value="#{cadastroTurmaMB.nomeModelo}" effect="fade">
-            <f:selectItems value="#{cadastroTurmaMB.modelos}" var="m" itemLabel="#{m.descricao}" itemValue="#{m.descricao}"/>
-            <f:ajax><f:setPropertyActionListener target="#{cadastroTurmaMB.setNomeModelo()}" value="#{m.descricao}" /></f:ajax>
+<p:dataTable id="tabela" var="turmas" value="#{turmasMB.turmas}">
+	<p:column headerText="Modelos">
+		<p:selectOneMenu value="#{turmasMB.nomeModelo}" effect="fade">
+            <f:selectItems value="#{turmas.modelos}" var="m" itemLabel="#{m.descricao}" itemValue="#{m.descricao}"/>
+            <f:ajax><f:setPropertyActionListener target="#{turmasMB.setNomeModelo()}" value="#{m.descricao}" /></f:ajax>
         </p:selectOneMenu>  
 	</p:column>
 	<p:column headerText="Descrição">
@@ -61,8 +56,8 @@
 		<h:outputText value="Senha: " />
 		<h:inputText value="#{modeloSelecionadoBean.cod}" />
 		<p:commandButton value="Entrar" action="#{modeloSelecionadoBean.getPag()}" ajax="false">
-		 <f:setPropertyActionListener value="#{cadastroTurmaMB.modeloSelecionado}" target="#{modeloSelecionadoBean.model}" />
-		 <f:setPropertyActionListener value="#{cadastroTurmaMB.turma.codigoAcesso}" target="#{modeloSelecionadoBean.codAcesso}" />
+		 <f:setPropertyActionListener value="#{turmasMB.modeloSelecionado}" target="#{modeloSelecionadoBean.model}" />
+		 <f:setPropertyActionListener value="#{turmas.codigoAcesso}" target="#{modeloSelecionadoBean.codAcesso}" />
 		</p:commandButton>
 	</p:column>
 </p:dataTable>

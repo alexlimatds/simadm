@@ -21,10 +21,12 @@
         </p:menuitem>
          <p:submenu label="Cadastros" icon="ui-icon-document">
             <p:menuitem value="Professor" url="" />
-            <p:menuitem value="Turma" url="CadastrarTurmas.xhtml" />
+            <p:menuitem value="Turma" url="cadastrarTurmas.xhtml" />
             <p:separator />
         </p:submenu>
         <p:submenu label="Modelos" icon="ui-icon-gear">
+         <p:menuitem value="Modelos Turmas" url="Turmas.xhtml">
+            </p:menuitem>
             <p:menuitem value="Ver Modelos" url="ExemploModelo.xhtml">
             </p:menuitem>
             <p:menuitem value="Cadastrar Modelos" url="CadastrarModelo.xhtml">
@@ -34,32 +36,45 @@
 </h:form>
 <br/>
 <br/>
-<center>
-<h1>Turmas</h1>
+<h1>Modelos</h1>
 <br/>
 <br/>
+<h:form id="cadastro">
+<h:panelGrid columns="2">
+	<h:outputText value="Descrição:" />
+	<h:inputText id="descricao" value="#{modeloRepositorio.descricao}" />
 
-<h:outputText value="Turma:" /> 2.404.5v
-<br/>
-<h:outputText value="Curso:" /> Tads
-</center>
+	<h:outputText value="Dt:" />
+	<h:inputText id="dt" value="#{modeloRepositorio.modeloCad.dt}" />
+	
+	<h:outputText value="Inicio:" />
+	<h:inputText id="inicio" value="#{modeloRepositorio.modeloCad.inicio}" />
+	
+	<h:outputText value="Fim:" />
+	<h:inputText id="fim" value="#{modeloRepositorio.modeloCad.fim}" />	 
+	
+	     <br></br>
+	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update="tabela" />
+</h:panelGrid>
 <br/>
 <center>
-<h:form>
-
-<p:dataTable var="modelos" value="#{modelosTurmaMB.modelos}">
-	<p:column headerText="Modelos Disponíveis">
-		#{modelos.nome}
+<p:dataTable id="tabela" var="todos" value="#{modeloRepositorio.todos}">
+	<p:column headerText="Descrição">
+		#{todos.descricao}
 	</p:column>
-	<p:column>
-		<p:commandButton value="Simular" action="#{modeloSelecionadoBean.getPag()}" ajax="false">
-		 <f:setPropertyActionListener value="#{modelos}" target="#{modeloSelecionadoBean.model}" />
-		</p:commandButton>
+	<p:column headerText="Dt">
+		#{todos.dt}
+	</p:column>
+	<p:column headerText="inicio">
+		#{todos.inicio}
+	</p:column>
+	<p:column headerText="fim">
+		#{todos.fim}
 	</p:column>
 </p:dataTable>
+</center>
 </h:form>
 
-</center>
 
 <center>
 <br/>

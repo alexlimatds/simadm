@@ -34,11 +34,9 @@
         </p:submenu>
     </p:menubar>
 </h:form>
-<br/>
-<br/>
+
 <h1>Turmas</h1>
-<br/>
-<br/>
+
 <h:form id="cadastro">
 <h:panelGrid columns="2">
 	<h:outputText value="Descrição:" />
@@ -50,19 +48,18 @@
 	<h:outputText value="Código de Acesso:" />
 	<h:inputText id="codigoAcesso" value="#{cadastroTurmaMB.turma.codigoAcesso}" />	 
 	
-	
-	
 	<h:outputText value="Modelos" />
-        <p:selectManyMenu id="scroll" value="#{cadastroTurmaMB.modelosSelecionados}" style="width:150px;height:200px" var="p" showCheckbox="true">
-            <f:selectItems value="#{cadastroTurmaMB.modelos}" var="m" itemLabel="#{m.descricao}" itemValue="#{m.descricao}" />
-            <p:column>
-                #{m.descricao}
-            </p:column>
-        </p:selectManyMenu>
-	     <br></br>
-	<p:commandButton value="Cadastrar" actionListener="#{cadastroTurmaMB.addTurma()}" update="tabela" />
-	<p:commandButton value="Nova Turma" actionListener="#{cadastroTurmaMB.novaTurma()}" update="cadastro" />
+    <p:selectManyMenu id="scroll" value="#{cadastroTurmaMB.modelosSelecionados}" style="width:150px;height:200px" var="p" showCheckbox="true">
+        <f:selectItems value="#{cadastroTurmaMB.modelos}" var="m" itemLabel="#{m.descricao}" itemValue="#{m.descricao}" />
+        <p:column>
+            #{m.descricao}
+        </p:column>
+    </p:selectManyMenu>
 </h:panelGrid>
+
+<p:commandButton value="Cadastrar" actionListener="#{cadastroTurmaMB.addTurma()}" update="tabela cadastro" />
+<p:commandButton value="Limpar Campos" actionListener="#{cadastroTurmaMB.novaTurma()}" update="cadastro" />
+
 <br/>
 <center>
 <p:dataTable id="tabela" var="turmas" value="#{cadastroTurmaMB.turmas}">

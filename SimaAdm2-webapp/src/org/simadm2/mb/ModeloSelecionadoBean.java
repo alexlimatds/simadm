@@ -13,10 +13,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
+
 import org.apache.catalina.ha.backend.CollectedInfo;
 import org.simadm2.model.ModeloRepositorio;
 import org.simadm2.model.Turma;
 import org.simadm2.model.TurmaRepositorio;
+
 
 import util.Relatorio;
 import core.ComponenteDeModelo;
@@ -31,7 +33,7 @@ import core.algoritmo.RungeKutta4;
 
 @ManagedBean
 @SessionScoped
-public class ModeloSelecionadoBean implements Serializable{
+public class ModeloSelecionadoBean  implements Serializable{
 	private Modelo model;
 	private NumberFormat numberFmt;
 	private double[] valores;
@@ -44,12 +46,14 @@ public class ModeloSelecionadoBean implements Serializable{
 	private String codAcesso;
 	private Turma turm;
 	private String cod;
+	private String erro;
 	
 	@PostConstruct
 	public void init() {
 		try{
 			numberFmt = DecimalFormat.getInstance();
 			numberFmt.setMaximumFractionDigits(4);
+			erro = "";
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
@@ -130,13 +134,15 @@ public class ModeloSelecionadoBean implements Serializable{
 	public String getPag(){
 		if(codAcesso.equals(cod)){
 			cod = "";
+			erro = "";
 		return "ExemploModelo.xhtml";
 		}
 		else{
 			cod = "";
+			erro = "ERRO: A senha está incorreta";
 			return "Turmas.xhtml";
-			
 		}
+
 	}
 	
 	public StringBuilder getBuilder() {
@@ -300,6 +306,14 @@ public class ModeloSelecionadoBean implements Serializable{
 
 	public void setCod(String cod) {
 		this.cod = cod;
+	}
+
+	public String getErro() {
+		return erro;
+	}
+
+	public void setErro(String erro) {
+		this.erro = erro;
 	}
 	
 	
