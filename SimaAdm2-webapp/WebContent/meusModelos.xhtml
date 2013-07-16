@@ -31,18 +31,44 @@
             </p:menuitem>
             <p:menuitem value="Modelos Disponíveis" url="modelosDisponiveis.xhtml">
             </p:menuitem>
-            <p:menuitem value="Cadastrar Modelos" url="CadastrarModelo.xhtml">
+            <p:menuitem value="Cadastrar Modelos" url="cadastrarModelo.xhtml">
             </p:menuitem>
         </p:submenu>
     </p:menubar>
 </h:form>
 <br/>
 <br/>
-<h1>Modelos</h1>
+<h1>Meus Modelos</h1>
 <br/>
-<br/>
-<h:form id="cadastro">
-<p:panel id="panel" header="Novo Modelo" style="margin-bottom:10px;">  
+<center>
+<p:dataTable id="tabela" var="todos" value="#{modeloRepositorio.todos}">
+	<p:column headerText="Descrição">
+		#{todos.descricao}
+	</p:column>
+	<p:column headerText="Resumo">
+		
+	</p:column>
+	<p:column headerText="Unidade de Tempo">
+		
+	</p:column>
+	<p:column headerText="inicio">
+		#{todos.inicio}
+	</p:column>
+	<p:column headerText="fim">
+		#{todos.fim}
+	</p:column>
+	<p:column headerText="Editar">
+        <p:commandButton id="modalDialogButton" icon="ui-icon-pencil" onclick="dlg2.show();" type="button"/>
+	</p:column>
+	<p:column headerText="Excluir">
+		<p:button  icon="ui-icon-trash" title="Excluir">
+        </p:button>
+	</p:column>
+</p:dataTable>
+</center>
+
+<p:dialog id="editarModelo" header="Editar Modelo" widgetVar="dlg2" modal="true" autoResize="true">  
+<h:form id="cadastro">  
 <h:panelGrid columns="2">
 	<h:outputText value="Descrição:" />
 	<h:inputText id="descricao" value="#{modeloRepositorio.descricao}" />
@@ -77,36 +103,10 @@
 	<p:editor id="editor" value="" width="600"/> 
 	
 	     <br></br>
-	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela" />
+	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela" oncomplete="dlg2.hide();"/>
 </h:panelGrid>
-</p:panel>
 </h:form>
-<br/>
-<center>
-<p:dataTable id="tabela" var="todos" value="#{modeloRepositorio.todos}">
-	<p:column headerText="Descrição">
-		#{todos.descricao}
-	</p:column>
-	<p:column headerText="Resumo">
-		
-	</p:column>
-	<p:column headerText="Unidade de Tempo">
-		
-	</p:column>
-	<p:column headerText="inicio">
-		#{todos.inicio}
-	</p:column>
-	<p:column headerText="fim">
-		#{todos.fim}
-	</p:column>
-	<p:column headerText="Excluir">
-		<p:button  icon="ui-icon-trash" title="Excluir">
-        </p:button>
-	</p:column>
-</p:dataTable>
-</center>
-
-
+</p:dialog> 
 
 <center>
 <br/>
