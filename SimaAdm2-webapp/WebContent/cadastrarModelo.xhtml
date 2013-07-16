@@ -45,16 +45,16 @@
 <p:panel id="panel" header="Novo Modelo" style="margin-bottom:10px;">  
 <h:panelGrid columns="2">
 	<h:outputText value="Descrição:" />
-	<h:inputText id="descricao" value="#{modeloRepositorio.descricao}" />
+	<h:inputText id="descricao" value="#{cadastroModeloMB.descricao}" />
 
 	<h:outputText value="Dt:" />
-	<h:inputText id="dt" value="#{modeloRepositorio.modeloCad.dt}" />
+	<h:inputText id="dt" value="#{cadastroModeloMB.modeloCad.dt}" />
 	
 	<h:outputText value="Inicio:" />
-	<h:inputText id="inicio" value="#{modeloRepositorio.modeloCad.inicio}" />
+	<h:inputText id="inicio" value="#{cadastroModeloMB.modeloCad.inicio}" />
 	
 	<h:outputText value="Fim:" />
-	<h:inputText id="fim" value="#{modeloRepositorio.modeloCad.fim}" />	 
+	<h:inputText id="fim" value="#{cadastroModeloMB.modeloCad.fim}" />	 
 	
 	<h:outputText value="Unidade de Tempo:" />
 	<h:inputText id="unidadeDeTempo" value="" />	 
@@ -77,7 +77,7 @@
 	<p:editor id="editor" value="" width="600"/> 
 	
 	     <br></br>
-	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela" />
+	<p:commandButton value="Cadastrar" actionListener="#{cadastroModeloMB.cadastrarModelo()}" update=":tabela" />
 </h:panelGrid>
 </p:panel>
 </h:form>

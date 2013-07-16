@@ -21,6 +21,7 @@ public class ModeloRepositorio {
 	private int inicio;
 	private int fim;
 	private String descricao;
+    private String delete;
 
 	private Modelo modeloCad = new Modelo(dt, inicio, fim);
 
@@ -169,7 +170,20 @@ public class ModeloRepositorio {
 			throw new RuntimeException(ex);
 		}
 	}
+	
+	public void deletarModelo(){
+		System.out.println(delete);
+	    for (int i = 0; i < todos.size(); i++) {  
+	        if (todos.get(i).getDescricao().equals(delete)) {  
+	            delete += todos.remove(i);  
+	        }  
+	    }  
+	}
 
+	public void addTodos(Modelo mod){
+		todos.add(mod);
+		System.out.println("Passou aki" + mod);
+	}
 	// =================================== GETS SETS
 	// ================================
 	public List<Modelo> getTodos() {
@@ -223,4 +237,11 @@ public class ModeloRepositorio {
 		this.modeloCad = modeloCad;
 	}
 
+	public String getDelete() {
+		return delete;
+	}
+
+	public void setDelete(String delete) {
+		this.delete = delete;
+	}
 }

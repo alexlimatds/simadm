@@ -61,8 +61,9 @@
         <p:commandButton id="modalDialogButton" icon="ui-icon-pencil" onclick="dlg2.show();" type="button"/>
 	</p:column>
 	<p:column headerText="Excluir">
-		<p:button  icon="ui-icon-trash" title="Excluir">
-        </p:button>
+	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModelo()}" update="tabela">
+	<f:setPropertyActionListener  value="#{todos.descricao}" target="#{modeloRepositorio.delete}" />
+	</p:commandButton>
 	</p:column>
 </p:dataTable>
 </center>
