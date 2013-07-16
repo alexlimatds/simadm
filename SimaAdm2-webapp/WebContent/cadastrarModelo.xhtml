@@ -40,6 +40,7 @@
 <br/>
 <br/>
 <h:form id="cadastro">
+<p:panel id="panel" header="Novo Modelo" style="margin-bottom:10px;">  
 <h:panelGrid columns="2">
 	<h:outputText value="Descrição:" />
 	<h:inputText id="descricao" value="#{modeloRepositorio.descricao}" />
@@ -63,14 +64,20 @@
 	<p:selectBooleanCheckbox value="" />  
 	
 	<h:outputText value="Resumo" />
-	<p:inputTextarea rows="3" cols="15" /> 
-	
+	<br/>
+	<h:outputText id="counter" />
+	<p:inputTextarea rows="5" cols="30" counter="counter" maxlength="300"       
+    counterTemplate="{0} caracteres restantes." autoResize="true"/>
+    <h:outputText value="" />  
+    
+	<br/>
 	<h:outputText value="Contexto" />
 	<p:editor id="editor" value="" width="600"/> 
 	
 	     <br></br>
 	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela" />
 </h:panelGrid>
+</p:panel>
 </h:form>
 <br/>
 <center>
@@ -78,8 +85,11 @@
 	<p:column headerText="Descrição">
 		#{todos.descricao}
 	</p:column>
-	<p:column headerText="Dt">
-		#{todos.dt}
+	<p:column headerText="Resumo">
+		
+	</p:column>
+	<p:column headerText="Unidade de Tempo">
+		
 	</p:column>
 	<p:column headerText="inicio">
 		#{todos.inicio}
