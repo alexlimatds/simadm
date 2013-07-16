@@ -53,9 +53,25 @@
 	<h:outputText value="Fim:" />
 	<h:inputText id="fim" value="#{modeloRepositorio.modeloCad.fim}" />	 
 	
+	<h:outputText value="Unidade de Tempo:" />
+	<h:inputText id="unidadeDeTempo" value="" />	 
+	
+	<h:outputText value="Disponível as turmas:" />
+	<p:selectBooleanCheckbox value="" />  
+	
+	<h:outputText value="Disponível a outros professores:" />
+	<p:selectBooleanCheckbox value="" />  
+	
+	<h:outputText value="Resumo" />
+	<p:inputTextarea rows="3" cols="15" /> 
+	
+	<h:outputText value="Contexto" />
+	<p:editor id="editor" value="" width="600"/> 
+	
 	     <br></br>
-	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update="tabela" />
+	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela" />
 </h:panelGrid>
+</h:form>
 <br/>
 <center>
 <p:dataTable id="tabela" var="todos" value="#{modeloRepositorio.todos}">
@@ -73,7 +89,7 @@
 	</p:column>
 </p:dataTable>
 </center>
-</h:form>
+
 
 
 <center>
