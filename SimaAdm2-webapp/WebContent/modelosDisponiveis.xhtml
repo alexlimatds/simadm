@@ -39,28 +39,35 @@
 <h1>Modelos Disponíveis</h1>
 <br/>
 <center>
-<p:dataTable id="tabela" var="todos" value="#{modeloRepositorio.todos}">
+<p:dataTable id="tabela2" var="todos2" value="#{modeloRepositorio.disponivel}">
 	<p:column headerText="Descrição">
-		#{todos.descricao}
+		#{todos2.modelo.descricao}
 	</p:column>
 	<p:column headerText="Resumo">
-		
+		#{todos2.resumo}
+	</p:column>
+	<p:column headerText="contexto">
+		#{todos2.contexto}
+	</p:column>
+	<p:column headerText="disponível as turmas">
+		#{todos2.disponivelAsTurmas}
+	</p:column>
+	<p:column headerText="disponível a outros professores">
+		#{todos2.disponivelAOutrosProfessores}
 	</p:column>
 	<p:column headerText="Unidade de Tempo">
 		
 	</p:column>
 	<p:column headerText="inicio">
-		#{todos.inicio}
+		#{todos2.modelo.inicio}
 	</p:column>
 	<p:column headerText="fim">
-		#{todos.fim}
+		#{todos2.modelo.fim}
 	</p:column>
-	<p:column headerText="Autor">
-		Daniel
-	</p:column>
-	<p:column headerText="Copiar">
-		<p:button  icon="ui-icon-transferthick-e-w" title="Copiar">
-        </p:button>
+	<p:column headerText="Excluir">
+	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModeloDisp()}" update="tabela2">
+	<f:setPropertyActionListener  value="#{todos2.modelo.descricao}" target="#{modeloRepositorio.delete}" />
+	</p:commandButton>
 	</p:column>
 </p:dataTable>
 </center>

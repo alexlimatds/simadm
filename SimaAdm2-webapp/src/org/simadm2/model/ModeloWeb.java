@@ -9,6 +9,19 @@ public class ModeloWeb {
 	private boolean disponivelAOutrosProfessores;
 	private String resumo;
 	private String contexto;
+	
+	
+
+	
+	public ModeloWeb(Modelo modelo, boolean disponivelAsTurmas,
+			boolean disponivelAOutrosProfessores, String resumo, String contexto) {
+		super();
+		this.modelo = modelo;
+		this.disponivelAsTurmas = disponivelAsTurmas;
+		this.disponivelAOutrosProfessores = disponivelAOutrosProfessores;
+		this.resumo = resumo;
+		this.contexto = contexto;
+	}
 
 	public Modelo getModelo() {
 		return modelo;

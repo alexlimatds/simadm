@@ -6,6 +6,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import core.Constante;
 import core.Estoque;
 import core.Fluxo;
@@ -26,16 +28,28 @@ public class ModeloRepositorio {
 	private Modelo modeloCad = new Modelo(dt, inicio, fim);
 
 	static ArrayList<Modelo> todos = new ArrayList<Modelo>();
+	 static ArrayList<ModeloWeb> todos2 = new ArrayList<ModeloWeb>();
+	 static ArrayList<ModeloWeb> disponivel = new ArrayList<ModeloWeb>();
+	
+	
 
 	public ModeloRepositorio() {
-		ModeloWeb modeloWeb = new ModeloWeb();
+		ModeloWeb modeloWeb = new ModeloWeb(modeloCad, false, false, delete, delete);
 		modeloWeb.setModelo(getModeloExemplo());
 		modeloWeb.setContexto("Este é um modelo de exemplo muito simples.");
 		modeloWeb.setDisponivelAsTurmas(true);
+		modeloWeb.setDisponivelAOutrosProfessores(true);
 		modeloWeb.setResumo("Modelo simples de exemplo");
 		//TODO criar modeloWeb com os modelos abaixo
-		todos.add(getModeloFinanceiro());
-		todos.add(getModeloTeste());
+		ModeloWeb modeloWeb2 = new ModeloWeb(modeloCad, false, false, delete, delete);
+		modeloWeb2.setModelo(getModeloFinanceiro());
+		modeloWeb2.setContexto("Este é um modelo de Financeiro");
+		modeloWeb2.setDisponivelAsTurmas(true);
+		modeloWeb2.setResumo("Modelo simples de exemplo Financeiro");
+		todos2.add(modeloWeb);
+		todos2.add(modeloWeb2);
+		//todos.add(getModeloFinanceiro());
+		//todos.add(getModeloTeste());
 	}
 
 	public Modelo getModeloExemplo() {
@@ -179,11 +193,39 @@ public class ModeloRepositorio {
 	        }  
 	    }  
 	}
+	
+	public void deletarModeloWeb(){
+		System.out.println(delete);
+	    for (int i = 0; i < todos2.size(); i++) {  
+	        if (todos2.get(i).getModelo().getDescricao().equals(delete)) {  
+	            delete += todos2.remove(i);  
+	        }  
+	    }  
+	}
+	
+	public void deletarModeloDisp(){
+		System.out.println(delete);
+	    for (int i = 0; i < disponivel.size(); i++) {  
+	        if (disponivel.get(i).getModelo().getDescricao().equals(delete)) {  
+	            delete += disponivel.remove(i);  
+	        }  
+	    }  
+	}
 
 	public void addTodos(Modelo mod){
 		todos.add(mod);
 		System.out.println("Passou aki" + mod);
 	}
+	public void addTodos2(ModeloWeb mod2){
+		todos2.add(mod2);
+		System.out.println("Passou aki2 " + mod2);
+	}
+	
+	public void addDisponivel(ModeloWeb disp){
+		disponivel.add(disp);
+		System.out.println("Passou aki3 " + disp);
+	}
+	
 	// =================================== GETS SETS
 	// ================================
 	public List<Modelo> getTodos() {
@@ -191,6 +233,18 @@ public class ModeloRepositorio {
 		// todos.add(getModeloFinanceiro());
 		// todos.add(getModeloTeste());
 		return todos;
+	}
+	
+	public List<ModeloWeb> getTodos2() {
+		return todos2;
+	}
+	
+	public  ArrayList<ModeloWeb> getDisponivel() {
+		return disponivel;
+	}
+
+	public static void setDisponivel(ArrayList<ModeloWeb> disponivel) {
+		ModeloRepositorio.disponivel = disponivel;
 	}
 
 	public Modelo getModeloCad() {
@@ -244,4 +298,5 @@ public class ModeloRepositorio {
 	public void setDelete(String delete) {
 		this.delete = delete;
 	}
+	
 }
