@@ -84,28 +84,6 @@
 </h:form>
 <br/>
 <center>
-<p:dataTable id="tabela" var="todos" value="#{modeloRepositorio.todos}">
-	<p:column headerText="Descrição">
-		#{todos.descricao}
-	</p:column>
-	<p:column headerText="Resumo">
-		
-	</p:column>
-	<p:column headerText="Unidade de Tempo">
-		
-	</p:column>
-	<p:column headerText="inicio">
-		#{todos.inicio}
-	</p:column>
-	<p:column headerText="fim">
-		#{todos.fim}
-	</p:column>
-	<p:column headerText="Excluir">
-		<p:button  icon="ui-icon-trash" title="Excluir">
-        </p:button>
-	</p:column>
-</p:dataTable>
-<br/>
 <p:dataTable id="tabela2" var="todos2" value="#{modeloRepositorio.todos2}">
 	<p:column headerText="Descrição">
 		#{todos2.modelo.descricao}

@@ -56,7 +56,6 @@
 		#{todos2.disponivelAOutrosProfessores}
 	</p:column>
 	<p:column headerText="Unidade de Tempo">
-		
 	</p:column>
 	<p:column headerText="inicio">
 		#{todos2.modelo.inicio}
@@ -67,6 +66,11 @@
 	<p:column headerText="Excluir">
 	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModeloDisp()}" update="tabela2">
 	<f:setPropertyActionListener  value="#{todos2.modelo.descricao}" target="#{modeloRepositorio.delete}" />
+	</p:commandButton>
+	</p:column>
+	<p:column headerText="Copiar">
+		<p:commandButton icon="ui-icon-transferthick-e-w" title="Copiar" actionListener="#{cadastroModeloMB.copiarModelo()}" update="tabela2">
+	<f:setPropertyActionListener  value="#{todos2}" target="#{cadastroModeloMB.modeloCopia}" />
 	</p:commandButton>
 	</p:column>
 </p:dataTable>

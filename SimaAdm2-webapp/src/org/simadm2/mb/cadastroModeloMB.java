@@ -30,9 +30,11 @@ public class cadastroModeloMB {
 	private Modelo modeloCad = new Modelo(dt, inicio, fim);
 	ModeloWeb mw = new ModeloWeb(modeloCad, disponivelAsTurmas,
 			 disponivelAOutrosProfessores, resumo, contexto);
+	ModeloWeb modeloCopia = new ModeloWeb(modeloCad, disponivelAsTurmas, disponivelAOutrosProfessores, resumo, contexto);
 	private List<Modelo> modelos = new ArrayList<Modelo>();
 	private List<ModeloWeb> modweb = new ArrayList<ModeloWeb>();
 	
+
 	ModeloRepositorio mr = new ModeloRepositorio();
 	
 	
@@ -61,6 +63,22 @@ public class cadastroModeloMB {
 		modeloCad = new Modelo(dt, fim, fim);
 		mw = new ModeloWeb(modeloCad, disponivelAsTurmas, disponivelAOutrosProfessores, resumo, contexto);
 	}
+	
+	public void novoModeloCopia(){
+		modeloCad = new Modelo(dt, fim, fim);
+		modeloCopia = new ModeloWeb(modeloCad, disponivelAsTurmas, disponivelAOutrosProfessores, resumo, contexto);
+	}
+	
+	 public void copiarModelo(){
+		 try {
+			mr.addTodos2(modeloCopia);
+			novoModeloCopia();
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		 
+	 }
 	
 	//====================================
 
@@ -192,5 +210,14 @@ public class cadastroModeloMB {
 	public void setMw(ModeloWeb mw) {
 		this.mw = mw;
 	}
+	
+	public ModeloWeb getModeloCopia() {
+		return modeloCopia;
+	}
+
+	public void setModeloCopia(ModeloWeb modeloCopia) {
+		this.modeloCopia = modeloCopia;
+	}
+
 	
 }

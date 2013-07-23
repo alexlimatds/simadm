@@ -41,28 +41,34 @@
 <h1>Meus Modelos</h1>
 <br/>
 <center>
-<p:dataTable id="tabela" var="todos" value="#{modeloRepositorio.todos}">
+<p:dataTable id="tabela2" var="todos2" value="#{modeloRepositorio.todos2}">
 	<p:column headerText="Descrição">
-		#{todos.descricao}
+		#{todos2.modelo.descricao}
 	</p:column>
 	<p:column headerText="Resumo">
-		
+		#{todos2.resumo}
+	</p:column>
+	<p:column headerText="contexto">
+		#{todos2.contexto}
+	</p:column>
+	<p:column headerText="disponível as turmas">
+		#{todos2.disponivelAsTurmas}
+	</p:column>
+	<p:column headerText="disponível a outros professores">
+		#{todos2.disponivelAOutrosProfessores}
 	</p:column>
 	<p:column headerText="Unidade de Tempo">
 		
 	</p:column>
 	<p:column headerText="inicio">
-		#{todos.inicio}
+		#{todos2.modelo.inicio}
 	</p:column>
 	<p:column headerText="fim">
-		#{todos.fim}
-	</p:column>
-	<p:column headerText="Editar">
-        <p:commandButton id="modalDialogButton" icon="ui-icon-pencil" onclick="dlg2.show();" type="button"/>
+		#{todos2.modelo.fim}
 	</p:column>
 	<p:column headerText="Excluir">
-	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModelo()}" update="tabela">
-	<f:setPropertyActionListener  value="#{todos.descricao}" target="#{modeloRepositorio.delete}" />
+	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModeloWeb()}" update="tabela2">
+	<f:setPropertyActionListener  value="#{todos2.modelo.descricao}" target="#{modeloRepositorio.delete}" />
 	</p:commandButton>
 	</p:column>
 </p:dataTable>
@@ -104,7 +110,7 @@
 	<p:editor id="editor" value="" width="600"/> 
 	
 	     <br></br>
-	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela" oncomplete="dlg2.hide();"/>
+	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela2" oncomplete="dlg2.hide();"/>
 </h:panelGrid>
 </h:form>
 </p:dialog> 

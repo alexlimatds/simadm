@@ -12,7 +12,6 @@ public class ModeloWeb {
 	
 	
 
-	
 	public ModeloWeb(Modelo modelo, boolean disponivelAsTurmas,
 			boolean disponivelAOutrosProfessores, String resumo, String contexto) {
 		super();
