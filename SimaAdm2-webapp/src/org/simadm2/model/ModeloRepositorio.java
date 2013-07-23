@@ -30,6 +30,7 @@ public class ModeloRepositorio {
 	 static ArrayList<Modelo> todos = new ArrayList<Modelo>();
 	 static ArrayList<ModeloWeb> todos2 = new ArrayList<ModeloWeb>();
 	 static ArrayList<ModeloWeb> disponivel = new ArrayList<ModeloWeb>();
+	 static ArrayList<ModeloWeb> disponivelAsTurmas = new ArrayList<ModeloWeb>();
 	
 	
 
@@ -221,6 +222,13 @@ public class ModeloRepositorio {
 		System.out.println("Passou aki2 " + mod2);
 	}
 	
+	public void addTurmas(ModeloWeb mod3){
+		disponivelAsTurmas.add(mod3);
+		System.out.println("Passou aki3 " + mod3);
+	}
+	
+	
+	
 	public void addDisponivel(ModeloWeb disp){
 		disponivel.add(disp);
 		System.out.println("Passou aki3 " + disp);
@@ -298,5 +306,10 @@ public class ModeloRepositorio {
 	public void setDelete(String delete) {
 		this.delete = delete;
 	}
+	
+	public List<ModeloWeb> getDisponivelAsTurmas() {
+		return disponivelAsTurmas;
+	}
+
 	
 }

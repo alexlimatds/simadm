@@ -61,10 +61,20 @@ public class cadastroModeloMB {
 
 	public void novoModelo(){
 		modeloCad = new Modelo(dt, fim, fim);
+		disponivelAsTurmas = false;
+		disponivelAOutrosProfessores = false;
+		resumo = "";
+		contexto = "";
+		descricao = "";
 		mw = new ModeloWeb(modeloCad, disponivelAsTurmas, disponivelAOutrosProfessores, resumo, contexto);
 	}
 	
 	public void novoModeloCopia(){
+		disponivelAsTurmas = false;
+		disponivelAOutrosProfessores = false;
+		resumo = "";
+		contexto = "";
+		descricao = "";
 		modeloCad = new Modelo(dt, fim, fim);
 		modeloCopia = new ModeloWeb(modeloCad, disponivelAsTurmas, disponivelAOutrosProfessores, resumo, contexto);
 	}
