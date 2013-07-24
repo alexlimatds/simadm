@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+<h:graphicImage value="/images/image.jpg" />
+<h:form>
+
+    <p:growl id="messages"/>
+    <p:menubar>
+        <p:menuitem value="início" icon="ui-icon-document">
+        </p:menuitem>
+         <p:submenu label="Cadastros" icon="ui-icon-document">
+            <p:menuitem value="Professor" url="" />
+            <p:menuitem value="Turma" url="cadastrarTurmas.xhtml" />
+            <p:separator />
+        </p:submenu>
+        <p:submenu label="Modelos" icon="ui-icon-gear">
+         <p:menuitem value="Modelos Turmas" url="Turmas.xhtml">
+            </p:menuitem>
+            <p:menuitem value="Meus Modelos" url="meusModelos.xhtml">
+            </p:menuitem>
+            <p:menuitem value="Cadastrar Modelos" url="cadastrarModelo.xhtml">
+            </p:menuitem>
+        </p:submenu>
+    </p:menubar>
+</h:form>
+<br/>
+<br/>
+<h1>Modelos Disponíveis</h1>
+<br/>
+<center>
+<p:dataTable id="tabela2" var="todos2" value="#{modeloRepositorio.disponivel}">
+	<p:column headerText="Descrição">
+		#{todos2.modelo.descricao}
+	</p:column>
+	<p:column headerText="Resumo">
+		#{todos2.resumo}
+	</p:column>
+	<p:column headerText="contexto">
+		#{todos2.contexto}
+	</p:column>
+	<p:column headerText="disponível as turmas">
+		#{todos2.disponivelAsTurmas}
+	</p:column>
+	<p:column headerText="disponível a outros professores">
+		#{todos2.disponivelAOutrosProfessores}
+	</p:column>
+	<p:column headerText="Unidade de Tempo">
+	</p:column>
+	<p:column headerText="inicio">
+		#{todos2.modelo.inicio}
+	</p:column>
+	<p:column headerText="fim">
+		#{todos2.modelo.fim}
+	</p:column>
+	<p:column headerText="Excluir">
+	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModeloDisp()}" update="tabela2">
+	<f:setPropertyActionListener  value="#{todos2.modelo.descricao}" target="#{modeloRepositorio.delete}" />
+	</p:commandButton>
+	</p:column>
+	<p:column headerText="Copiar">
+		<p:commandButton icon="ui-icon-transferthick-e-w" title="Copiar" actionListener="#{cadastroModeloMB.copiarModelo()}" update="tabela2">
+	<f:setPropertyActionListener  value="#{todos2}" target="#{cadastroModeloMB.modeloCopia}" />
+	</p:commandButton>
+	</p:column>
+</p:dataTable>
+</center>
+
+
+
+<center>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<br/>
+<br/>
+</center>	
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+				 <p:menubar autoDisplay="false">
+       
+    </p:menubar>
+</h:body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+<h:graphicImage value="/images/image.jpg" />
+<h:form>
+
+    <p:growl id="messages"/>
+    <p:menubar>
+        <p:menuitem value="início" icon="ui-icon-document">
+        </p:menuitem>
+         <p:submenu label="Cadastros" icon="ui-icon-document">
+            <p:menuitem value="Professor" url="" />
+            <p:menuitem value="Turma" url="cadastrarTurmas.xhtml" />
+            <p:separator />
+        </p:submenu>
+        <p:submenu label="Modelos" icon="ui-icon-gear">
+         <p:menuitem value="Modelos Turmas" url="Turmas.xhtml">
+            </p:menuitem>
+            <p:menuitem value="Meus Modelos" url="meusModelos.xhtml">
+            </p:menuitem>
+            <p:menuitem value="Modelos Disponíveis" url="modelosDisponiveis.xhtml">
+            </p:menuitem>
+            <p:menuitem value="Cadastrar Modelos" url="cadastrarModelo.xhtml">
+            </p:menuitem>
+        </p:submenu>
+    </p:menubar>
+</h:form>
+<br/>
+<br/>
+<h1>Meus Modelos</h1>
+<br/>
+<center>
+<p:dataTable id="tabela2" var="todos2" value="#{modeloRepositorio.todos2}">
+	<p:column headerText="Descrição">
+		#{todos2.modelo.descricao}
+	</p:column>
+	<p:column headerText="Resumo">
+		#{todos2.resumo}
+	</p:column>
+	<p:column headerText="contexto">
+		#{todos2.contexto}
+	</p:column>
+	<p:column headerText="disponível as turmas">
+		#{todos2.disponivelAsTurmas}
+	</p:column>
+	<p:column headerText="disponível a outros professores">
+		#{todos2.disponivelAOutrosProfessores}
+	</p:column>
+	<p:column headerText="Unidade de Tempo">
+		
+	</p:column>
+	<p:column headerText="inicio">
+		#{todos2.modelo.inicio}
+	</p:column>
+	<p:column headerText="fim">
+		#{todos2.modelo.fim}
+	</p:column>
+	<p:column headerText="Excluir">
+	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModeloWeb()}" update="tabela2">
+	<f:setPropertyActionListener  value="#{todos2.modelo.descricao}" target="#{modeloRepositorio.delete}" />
+	</p:commandButton>
+	</p:column>
+</p:dataTable>
+</center>
+
+<p:dialog id="editarModelo" header="Editar Modelo" widgetVar="dlg2" modal="true" autoResize="true">  
+<h:form id="cadastro">  
+<h:panelGrid columns="2">
+	<h:outputText value="Descrição:" />
+	<h:inputText id="descricao" value="#{modeloRepositorio.descricao}" />
+
+	<h:outputText value="Dt:" />
+	<h:inputText id="dt" value="#{modeloRepositorio.modeloCad.dt}" />
+	
+	<h:outputText value="Inicio:" />
+	<h:inputText id="inicio" value="#{modeloRepositorio.modeloCad.inicio}" />
+	
+	<h:outputText value="Fim:" />
+	<h:inputText id="fim" value="#{modeloRepositorio.modeloCad.fim}" />	 
+	
+	<h:outputText value="Unidade de Tempo:" />
+	<h:inputText id="unidadeDeTempo" value="" />	 
+	
+	<h:outputText value="Disponível as turmas:" />
+	<p:selectBooleanCheckbox value="" />  
+	
+	<h:outputText value="Disponível a outros professores:" />
+	<p:selectBooleanCheckbox value="" />  
+	
+	<h:outputText value="Resumo" />
+	<br/>
+	<h:outputText id="counter" />
+	<p:inputTextarea rows="5" cols="30" counter="counter" maxlength="300"       
+    counterTemplate="{0} caracteres restantes." autoResize="true"/>
+    <h:outputText value="" />  
+    
+	<br/>
+	<h:outputText value="Contexto" />
+	<p:editor id="editor" value="" width="600"/> 
+	
+	     <br></br>
+	<p:commandButton value="Cadastrar" actionListener="#{modeloRepositorio.cadastrarModelo()}" update=":tabela2" oncomplete="dlg2.hide();"/>
+</h:panelGrid>
+</h:form>
+</p:dialog> 
+
+<center>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<br/>
+<br/>
+</center>	
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+				 <p:menubar autoDisplay="false">
+       
+    </p:menubar>
+</h:body>
+</html>

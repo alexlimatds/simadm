@@ -23,16 +23,16 @@ public class Modelo {
 	private int qtdCiclos;
 	private VariavelAuxiliar componenteTempo;
 	private Algoritmo algoritmo;
-	//contém os componentes influenciáveis em ordem de avaliação.
+	//contï¿½m os componentes influenciï¿½veis em ordem de avaliaï¿½ï¿½o.
 	private List<ComponenteInfluenciavel> listaDeAvaliacao;
 	private String descricao;
 	
 	/**
 	 * Cria um novo modelo.
 	 * 
-	 * @param dt		Fração de tempo (passo) na qual a simulação será executada.
-	 * @param inicio	Tempo inicial da simulação.
-	 * @param fim		Tempo final da simulação.
+	 * @param dt		Fraï¿½ï¿½o de tempo (passo) na qual a simulaï¿½ï¿½o serï¿½ executada.
+	 * @param inicio	Tempo inicial da simulaï¿½ï¿½o.
+	 * @param fim		Tempo final da simulaï¿½ï¿½o.
 	 * @throws ModeloException
 	 */
 	public Modelo(double dt, int inicio, int fim){
@@ -69,7 +69,7 @@ public class Modelo {
 		this.descricao = descricao;
 	}
 	/**
-	 * Executa uma unidade de tempo (ciclo) de simulação.
+	 * Executa uma unidade de tempo (ciclo) de simulaï¿½ï¿½o.
 	 */
 	public void simular() throws InterpretadorException{
 		if(tempo <= fim){
@@ -81,7 +81,7 @@ public class Modelo {
 	}
 	
 	/**
-	 * Executa um step (dt) de simulação.
+	 * Executa um step (dt) de simulaï¿½ï¿½o.
 	 */
 	public void executarStep() throws InterpretadorException{
 		if(tempo <= fim){
@@ -98,16 +98,16 @@ public class Modelo {
 	}
 	
 	/**
-	 * Define o algoritmo de integração a ser utilizado na simulação.
+	 * Define o algoritmo de integraï¿½ï¿½o a ser utilizado na simulaï¿½ï¿½o.
 	 * @param alg	O algorimo a ser utilizado. Consulte as classes do pacote <code>core.Algoritmo</code>.
-	 * @throws ModeloException	Caso este método seja chamado após o início da simulação.
+	 * @throws ModeloException	Caso este mï¿½todo seja chamado apï¿½s o inï¿½cio da simulaï¿½ï¿½o.
 	 */
 	public void setAlgoritmoDeIntegracao(Algoritmo alg) throws ModeloException{
 		if( tempo == inicio ){
 			algoritmo = alg;
 		}
 		else{
-			throw new ModeloException("Não é possível alterar o algoritmo após o início da simulação.");
+			throw new ModeloException("Nï¿½o ï¿½ possï¿½vel alterar o algoritmo apï¿½s o inï¿½cio da simulaï¿½ï¿½o.");
 		}
 	}
 	
@@ -117,7 +117,7 @@ public class Modelo {
 		algoritmo.calcularVariaveisEFluxos();
 	}
 	
-	/* Prepara a lista da ordem de avaliação dos componentes.
+	/* Prepara a lista da ordem de avaliaï¿½ï¿½o dos componentes.
 	 */
 	private void prepapararListaDeAvaliacao() throws InterpretadorException{
 		//calculando a ordem dos componentes influenciaveis e inserindo-os na listaDeAvaliacao
@@ -133,29 +133,29 @@ public class Modelo {
 	}
 	
 	/*
-	 * Retorna a ordem de execução de um componente influenciável.
+	 * Retorna a ordem de execuï¿½ï¿½o de um componente influenciï¿½vel.
 	 */
 	private int getOrdem(ComponenteInfluenciavel comp){
 		if(comp.getInfluencias().size() == 0){
-			//comp não é influenciado por outros componentes, assim possui a prioridade (ordem)
-			//de avaliação mais alta
+			//comp nï¿½o ï¿½ influenciado por outros componentes, assim possui a prioridade (ordem)
+			//de avaliaï¿½ï¿½o mais alta
 			return 0;
 		}
 		else{
 			int ordem = 0, temp;
 			for(ComponenteDeModelo obj : comp.getInfluencias().values()){
 				if(obj instanceof ComponenteInfluenciavel){
-					//comp é influenciado por um componente influenciável, assim
-					//a influência de comp pode ser influenciado por um terceiro componente,
+					//comp ï¿½ influenciado por um componente influenciï¿½vel, assim
+					//a influï¿½ncia de comp pode ser influenciado por um terceiro componente,
 					//o qual pode ser influenciado por um quarto componente e assim por diante.
-					//Desta forma, usa recursão para descobrir a "profundidade" da prioridade 
+					//Desta forma, usa recursï¿½o para descobrir a "profundidade" da prioridade 
 					//(ordem) de comp
-					temp = getOrdem((ComponenteInfluenciavel)obj) + 1; //recursão
+					temp = getOrdem((ComponenteInfluenciavel)obj) + 1; //recursï¿½o
 				}
 				else{
-					//comp é influenciado por um componente que não é influenciável, assim
-					//a influência de comp não possui influências e sua prioridade (ordem)
-					//de avaliação é a segunda mais alta
+					//comp ï¿½ influenciado por um componente que nï¿½o ï¿½ influenciï¿½vel, assim
+					//a influï¿½ncia de comp nï¿½o possui influï¿½ncias e sua prioridade (ordem)
+					//de avaliaï¿½ï¿½o ï¿½ a segunda mais alta
 					temp = 1;
 				}
 				
@@ -183,6 +183,25 @@ public class Modelo {
 	public double getDt() {
 		return dt;
 	}
+	public void setDt(double dt) {
+		this.dt = dt;
+	}
+	
+	public double getInicio() {
+		return inicio;
+	}
+
+	public void setInicio(double inicio) {
+		this.inicio = inicio;
+	}
+
+	public double getFim() {
+		return fim;
+	}
+
+	public void setFim(double fim) {
+		this.fim = fim;
+	}
 
 	public Set<Estoque> getEstoques() {
 		return Collections.unmodifiableSet( estoques );
@@ -202,11 +221,11 @@ public class Modelo {
 	}
 	
 	/**
-	 * Retorna o tempo atual da simulação. Note que há uma diferença entre 
+	 * Retorna o tempo atual da simulaï¿½ï¿½o. Note que hï¿½ uma diferenï¿½a entre 
 	 * tempo atual e ciclo atual. O tempo, por exemplo, pode iniciar em 10 
-	 * (representando que a simulação teve início no mês de outubro) enquanto 
-	 * que o ciclo sempre inciará em zero. Neste exemplo, na primeira rodada de 
-	 * simulação, o tempo atual será 10 e o ciclo atual será zero.
+	 * (representando que a simulaï¿½ï¿½o teve inï¿½cio no mï¿½s de outubro) enquanto 
+	 * que o ciclo sempre inciarï¿½ em zero. Neste exemplo, na primeira rodada de 
+	 * simulaï¿½ï¿½o, o tempo atual serï¿½ 10 e o ciclo atual serï¿½ zero.
 	 * @return
 	 */
 	public double getTempo() {
@@ -214,20 +233,20 @@ public class Modelo {
 	}
 	
 	/**
-	 * Retorna uma lista com os componentes influenciáveis do modelo. 
-	 * Os elementos da lista estão ordenados de acordo com a sua ordem de 
-	 * execução.
+	 * Retorna uma lista com os componentes influenciï¿½veis do modelo. 
+	 * Os elementos da lista estï¿½o ordenados de acordo com a sua ordem de 
+	 * execuï¿½ï¿½o.
 	 * 
-	 * @return	Uma lista contendo instâncias de <code>ComponenteInfluenciavel</code>.
+	 * @return	Uma lista contendo instï¿½ncias de <code>ComponenteInfluenciavel</code>.
 	 */
 	public List<ComponenteInfluenciavel> getListaDeAvaliacao() {
 		return listaDeAvaliacao;
 	}
 	
 	/**
-	 * Verifica se uma expressão possui erros de sintaxe.
-	 * @param expr           nova expressão
-	 * @param nomesVariaveis variáveis (influeências) envolvidas na expressão
+	 * Verifica se uma expressï¿½o possui erros de sintaxe.
+	 * @param expr           nova expressï¿½o
+	 * @param nomesVariaveis variï¿½veis (influeï¿½ncias) envolvidas na expressï¿½o
 	 * @throws InterpretadorException
 	 */
 	public void validarExpressao(String expr, String[] nomesVariaveis) throws 
@@ -245,8 +264,8 @@ public class Modelo {
 }
 
 /**
- * Classe que, baseada na ordem de execução, faz a comparação 
- * entre dois componentes influenciáveis.
+ * Classe que, baseada na ordem de execuï¿½ï¿½o, faz a comparaï¿½ï¿½o 
+ * entre dois componentes influenciï¿½veis.
  * @author Alexandre
  */
 class ComparadorDeOrdem implements Comparator<ComponenteInfluenciavel>{

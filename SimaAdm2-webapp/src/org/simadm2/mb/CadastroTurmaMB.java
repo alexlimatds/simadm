@@ -16,14 +16,10 @@ import org.simadm2.model.TurmaRepositorio;
 
 import core.Modelo;
 
-
 @ManagedBean
 @SessionScoped
 public class CadastroTurmaMB implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private List<Modelo> modelos = new ArrayList<Modelo>();
 	private Turma turma = new Turma();
@@ -32,58 +28,33 @@ public class CadastroTurmaMB implements Serializable {
 	private List<String> modelosSelecionados = new ArrayList<String>();
 	private Map<String, Modelo> mapaModelos = new HashMap<String, Modelo>();
 	private Modelo modeloSelecionado;
-	
 
 	public Modelo getModeloSelecionado() {
 		return modeloSelecionado;
 	}
+
 	public void setModeloSelecionado(Modelo modeloSelecionado) {
 		this.modeloSelecionado = modeloSelecionado;
 	}
+
 	@PostConstruct
-	public void init()  {
+	public void init() {
 		ModeloRepositorio repositorioModelo = new ModeloRepositorio();
-		//modelos.addAll(repositorioModelo.getTodos());
-		modelos.add(repositorioModelo.getModeloExemplo());
-		modelos.add(repositorioModelo.getModeloFinanceiro());
+		modelos.addAll(repositorioModelo.getTodos());
 		turmas.addAll(repositorioTurma.getTurmas());
-		Modelo m = repositorioModelo.getModeloFinanceiro();
-		mapaModelos.put(m.getDescricao(), m);
-		m = repositorioModelo.getModeloExemplo();
-		mapaModelos.put(m.getDescricao(), m);
-	}
-	
-	private String nomeModelo;
-	public String getNomeModelo() {
-		return nomeModelo;
-	}
-	public void setNomeModelo(String nomeModelo) {
-		System.out.println("SET NOME MODELO: " + nomeModelo);
-		this.nomeModelo = nomeModelo;
-		setM();
+		for (Modelo m : modelos) {
+			mapaModelos.put(m.getDescricao(), m);
+		}
 	}
 
-	public List<Turma> getTurmas() {
-		return turmas;
-	}
-	
 	public Turma getTurma() {
 		return turma;
 	}
 
-	public void setM(){
-		modeloSelecionado = mapaModelos.get(nomeModelo);
-		System.out.println("SELECIONADO: " + modeloSelecionado);
-	}
-	public void novaTurma(){
-		turma = new Turma();
-	}
-	
 	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
 
-	
 	public List<String> getModelosSelecionados() {
 		return modelosSelecionados;
 	}
@@ -91,26 +62,30 @@ public class CadastroTurmaMB implements Serializable {
 	public void setModelosSelecionados(List<String> modelosSelecionados) {
 		this.modelosSelecionados = modelosSelecionados;
 	}
-	
+
 	public List<Modelo> getModelos() {
 		return modelos;
 	}
-	
-	public void selecionarModel(Modelo model){
-		System.out.println("###############"+model.getDescricao());
-		//turma.setModelo(model);	
+
+	public void novaTurma() {
+		turma = new Turma();
+		modelosSelecionados.clear();
 	}
-	
-	public void addTurma(){
-		for(String nome: modelosSelecionados){
+
+	public void addTurma() {
+		for (String nome : modelosSelecionados) {
 			turma.getModelos().add(mapaModelos.get(nome));
-			
+
 		}
 		repositorioTurma.addTurma(turma);
 		turmas.clear();
 		turmas.addAll(repositorioTurma.getTurmas());
-		//reseta campos
-		//turma = new Turma();
-		//return  "cadastrarTurmas.xhtml";
+		// reseta campos
+		novaTurma();
 	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
 }
