@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>SIMADM - Software de simulação Empresarial</title>
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+
+<h:body>
+<div id="templatemo_body_wrapper">
+	<div id="templatemo_wrapper">
+    	
+        <div id="templatemo_header">
+            <div id="site_title"><h1><a href="http://www.templatemo.com">Free CSS Templates</a></h1></div>
+            <div id="templatemo_menu">
+                <ul>
+                  <li><a href="index.xhtml" class="current">Início</a></li>
+                  <li><a href="about.html">Cadastros</a></li>
+                  <li><a href="modelos.xhtml">Modelos</a></li>
+                  <li><a href="contact.html" class="last">Contato</a></li>
+                </ul>
+            </div> <!-- end of templatemo_menu -->
+        </div><!-- end of header -->
+        
+        <div id="templatemo_middle">
+            <div id="mid_left">
+                <div id="mid_title">Sistema de Simulação Empresarial</div>
+            </div>
+            
+        </div> <!-- end of middle -->
+    </div>
+</div>
+<center>
+<h2>Meus Modelos</h2>
+</center>
+<br/>
+<center>
+<p:dataTable id="tabela2" var="todos2" value="#{modeloRepositorio.todos2}">
+	<p:column headerText="Descrição">
+		#{todos2.modelo.descricao}
+	</p:column>
+	<p:column headerText="Resumo">
+		#{todos2.resumo}
+	</p:column>
+	<p:column headerText="contexto">
+		#{todos2.contexto}
+	</p:column>
+	<p:column headerText="disponível as turmas">
+		#{todos2.disponivelAsTurmas}
+	</p:column>
+	<p:column headerText="disponível a outros professores">
+		#{todos2.disponivelAOutrosProfessores}
+	</p:column>
+	<p:column headerText="Unidade de Tempo">
+		
+	</p:column>
+	<p:column headerText="inicio">
+		#{todos2.modelo.inicio}
+	</p:column>
+	<p:column headerText="fim">
+		#{todos2.modelo.fim}
+	</p:column>
+	<p:column headerText="Excluir">
+	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModeloWeb()}" update="tabela2">
+	<f:setPropertyActionListener  value="#{todos2.modelo.descricao}" target="#{modeloRepositorio.delete}" />
+	</p:commandButton>
+	</p:column>
+</p:dataTable>
+</center>
+<br></br>
+<div id="templatemo_footer_wrapper">
+    <div id="templatemo_footer">
+        Copyright © 2013 <a href="#">IFRN</a>
+        <div class="cleaner"></div>
+    </div>
+</div>
+
+</h:body>   
+   
+   
+   
+   
+</html>
