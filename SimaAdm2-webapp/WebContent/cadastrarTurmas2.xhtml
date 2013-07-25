@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>SIMADM - Software de simulação Empresarial</title>
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+
+<h:body>
+<div id="templatemo_body_wrapper">
+	<div id="templatemo_wrapper">
+    	
+        <div id="templatemo_header">
+            <div id="site_title"><h1><a href="http://www.templatemo.com">Free CSS Templates</a></h1></div>
+            <div id="templatemo_menu">
+                <ul>
+                  <li><a href="index.xhtml" class="current">Início</a></li>
+                  <li><a href="about.html">Cadastros</a></li>
+                  <li><a href="modelos.xhtml">Modelos</a></li>
+                  <li><a href="contact.html" class="last">Contato</a></li>
+                </ul>
+            </div> <!-- end of templatemo_menu -->
+        </div><!-- end of header -->
+        
+        <div id="templatemo_middle">
+            <div id="mid_left">
+                <div id="mid_title">Sistema de Simulação Empresarial</div>
+            </div>
+            
+        </div> <!-- end of middle -->
+    </div>
+</div>
+<center>
+<h2>Cadastrar Turmas</h2>
+</center>
+<br></br>
+<h:form id="cadastro">
+<p:panel id="panel" header="Nova Turma" style="margin-bottom:10px;"> 
+<h:panelGrid columns="2">
+	<h:outputText value="Descrição:" />
+	<h:inputText id="descricao" value="#{cadastroTurmaMB.turma.descricao}" />
+	
+	<h:outputText value="Curso:" />
+	<h:inputText id="curso" value="#{cadastroTurmaMB.turma.curso}" />
+	
+	<h:outputText value="Código de Acesso:" />
+	<h:inputText id="codigoAcesso" value="#{cadastroTurmaMB.turma.codigoAcesso}" />	 
+	
+	<h:outputText value="Modelos" />
+    <p:selectManyMenu id="scroll" value="#{cadastroTurmaMB.modelosSelecionados}" style="width:150px;height:200px" var="p" showCheckbox="true">
+        <f:selectItems value="#{cadastroTurmaMB.modelos}" var="m" itemLabel="#{m.descricao}" itemValue="#{m.descricao}" />
+        <p:column>
+            #{m.descricao}
+        </p:column>
+    </p:selectManyMenu>
+</h:panelGrid>
+</p:panel>
+<br></br>
+<p:commandButton value="Cadastrar" actionListener="#{cadastroTurmaMB.addTurma()}" update="tabela cadastro" />
+<p:commandButton value="Limpar Campos" actionListener="#{cadastroTurmaMB.novaTurma()}" update="cadastro" />
+
+<br/>
+<center>
+<p:dataTable id="tabela" var="turmas" value="#{cadastroTurmaMB.turmas}">
+	<p:column headerText="Descrição">
+		#{turmas.descricao}
+	</p:column>
+	<p:column headerText="Curso">
+		#{turmas.curso}
+	</p:column>
+	<p:column headerText="Código de Acesso">
+		#{turmas.codigoAcesso}
+	</p:column>
+</p:dataTable>
+</center>
+
+</h:form>
+<br></br>
+<div id="templatemo_footer_wrapper">
+    <div id="templatemo_footer">
+        Copyright © 2013 <a href="#">IFRN</a>
+        <div class="cleaner"></div>
+    </div>
+</div>
+
+</h:body>   
+   
+   
+   
+   
+</html>

@@ -1,44 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-
+<title>SIMADM - Software de simulação Empresarial</title>
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 </h:head>
 
-<h:body>
-<h:graphicImage value="/images2/image.jpg" />
-<h:form>
 
-    <p:growl id="messages"/>
-    <p:menubar>
-        <p:menuitem value="início" icon="ui-icon-document">
-        </p:menuitem>
-         <p:submenu label="Cadastros" icon="ui-icon-document">
-            <p:menuitem value="Professor" url="" />
-            <p:menuitem value="Turma" url="cadastrarTurmas.xhtml" />
-            <p:separator />
-        </p:submenu>
-        <p:submenu label="Modelos" icon="ui-icon-gear">
-         <p:menuitem value="Modelos Turmas" url="Turmas.xhtml">
-            </p:menuitem>
-            <p:menuitem value="Meus Modelos" url="meusModelos.xhtml">
-            </p:menuitem>
-            <p:menuitem value="Modelos Disponíveis" url="modelosDisponiveis.xhtml">
-            </p:menuitem>
-            <p:menuitem value="Cadastrar Modelos" url="CadastrarModelo.xhtml">
-            </p:menuitem>
-        </p:submenu>
-    </p:menubar>
-</h:form>
-<br/>
-<br/>
-<h1>Modelos</h1>
+<h:body>
+<div id="templatemo_body_wrapper">
+	<div id="templatemo_wrapper">
+    	
+        <div id="templatemo_header">
+            <div id="site_title"><h1><a href="http://www.templatemo.com">Free CSS Templates</a></h1></div>
+            <div id="templatemo_menu">
+                <ul>
+                  <li><a href="index.xhtml" class="current">Início</a></li>
+                  <li><a href="about.html">Cadastros</a></li>
+                  <li><a href="modelos.xhtml">Modelos</a></li>
+                  <li><a href="contact.html" class="last">Contato</a></li>
+                </ul>
+            </div> <!-- end of templatemo_menu -->
+        </div><!-- end of header -->
+        
+        <div id="templatemo_middle">
+            <div id="mid_left">
+                <div id="mid_title">Sistema de Simulação Empresarial</div>
+            </div>
+            
+        </div> <!-- end of middle -->
+    </div>
+</div>
+
+<center>
+<h2>Cadastrar Modelos</h2>
+</center>
 <br/>
 <br/>
 <h:form id="cadastro">
@@ -116,30 +115,17 @@
 	</p:column>
 </p:dataTable>
 </center>
+<br></br>
+<div id="templatemo_footer_wrapper">
+    <div id="templatemo_footer">
+        Copyright © 2013 <a href="#">IFRN</a>
+        <div class="cleaner"></div>
+    </div>
+</div>
 
-
-
-<center>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-<br/>
-<br/>
-</center>	
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-				 <p:menubar autoDisplay="false">
-       
-    </p:menubar>
-</h:body>
+</h:body>   
+   
+   
+   
+   
 </html>
