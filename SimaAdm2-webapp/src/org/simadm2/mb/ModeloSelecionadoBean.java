@@ -135,7 +135,7 @@ public class ModeloSelecionadoBean  implements Serializable{
 		if(codAcesso.equals(cod)){
 			cod = "";
 			erro = "";
-		return "ExemploModelo.xhtml";
+		return "ExemploModelo2.xhtml";
 		}
 		else{
 			cod = "";

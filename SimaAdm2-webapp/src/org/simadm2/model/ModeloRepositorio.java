@@ -49,7 +49,7 @@ public class ModeloRepositorio {
 		modeloWeb2.setResumo("Modelo simples de exemplo Financeiro");
 		//todos2.add(modeloWeb);
 		//todos2.add(modeloWeb2);
-		//todos.add(getModeloFinanceiro());
+		todos.add(getModeloFinanceiro());
 		//todos.add(getModeloTeste());
 	}
 
