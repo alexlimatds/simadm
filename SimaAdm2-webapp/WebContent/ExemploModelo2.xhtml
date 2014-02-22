@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>SIMADM - Software de simulação Empresarial</title>
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+
+<h:body>
+<div id="templatemo_body_wrapper">
+	<div id="templatemo_wrapper">
+    	
+        <div id="templatemo_header">
+            
+            <div id="templatemo_menu">
+                <ul>
+                  <li><a href="Inicio2.xhtml" class="current">Início</a></li>
+                  <li><a href="cadastros.xhtml">Cadastros</a></li>
+                  <li><a href="modelos.xhtml">Modelos</a></li>
+                  <li><a href="contact.html" class="last">Contato</a></li>
+                </ul>
+            </div> <!-- end of templatemo_menu -->
+        </div><!-- end of header -->
+        
+        <div id="templatemo_middle">
+            <div id="mid_left">
+                <div id="mid_title">Sistema de Simulação Empresarial</div>
+            </div>
+            
+        </div> <!-- end of middle -->
+        
+        <div id="templatemo_main">
+
+				<center>
+					<h1>Simular Modelo</h1>
+					<h:outputText value="Descrição: " />
+					<h:outputText value="#{cadastroTurmaMB.turma.descricao}" />
+					-
+					<h:outputText value=" Curso: " />
+					<h:outputText value="#{cadastroTurmaMB.turma.curso}" />
+				</center>
+				<center>
+					<h:form>
+						<p:dataTable var="componente"
+							value="#{modeloSelecionadoBean.componentes}">
+							<p:column headerText="Componente">
+		#{componente.nome}
+	</p:column>
+							<p:column>
+								<h:inputText value="#{componente.expressao}" />
+							</p:column>
+						</p:dataTable>
+						<p:commandButton value="Simular"
+							action="#{modeloSelecionadoBean.simular()}"
+							update=":tabela @form" process="@form" />
+
+						<p:commandButton value="Reiniciar"
+							action="#{modeloSelecionadoBean.reiniciarModelo()}"
+							update=":tabela @form">
+						</p:commandButton>
+					</h:form>
+				</center>
+				<center>
+					<br /> <br /> <br /> <br />
+					<p:dataTable id="tabela" var="historico"
+						value="#{modeloSelecionadoBean.historicos}">
+						<p:column headerText="Componente">
+		#{historico.componente.nome}
+	</p:column>
+						<p:columns var="coluna" value="#{modeloSelecionadoBean.colunas}"
+							columnIndexVar="colIndex">
+							<f:facet name="header">#{coluna}</f:facet>
+							<h:outputText value="#{historico.valores[colIndex]}" />
+						</p:columns>
+					</p:dataTable>
+					<br /> <br /> <br /> <br /> <br />
+				</center>
+
+			</div> <!-- end of main -->
+    
+    </div>
+</div>
+<br></br>
+<div id="templatemo_footer_wrapper">
+    <div id="templatemo_footer">
+        Copyright © 2013 <a href="#">IFRN</a>
+        <div class="cleaner"></div>
+    </div>
+</div>
+
+</h:body>   
+   
+   
+   
+   
+</html>
