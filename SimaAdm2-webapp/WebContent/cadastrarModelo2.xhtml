@@ -15,7 +15,7 @@
 	<div id="templatemo_wrapper">
     	
         <div id="templatemo_header">
-            <div id="site_title"><h1><a href="http://www.templatemo.com">Free CSS Templates</a></h1></div>
+           
             <div id="templatemo_menu">
                 <ul>
                   <li><a href="index.xhtml" class="current">Início</a></li>
@@ -94,10 +94,12 @@
 		#{todos2.contexto}
 	</p:column>
 	<p:column headerText="disponível as turmas">
-		#{todos2.disponivelAsTurmas}
+	<center><p:selectBooleanCheckbox  value="#{todos2.disponivelAsTurmas}" disabled="true" /></center>
+		
 	</p:column>
 	<p:column headerText="disponível a outros professores">
-		#{todos2.disponivelAOutrosProfessores}
+	<center><p:selectBooleanCheckbox value="#{todos2.disponivelAOutrosProfessores}" disabled="true" /></center>
+		
 	</p:column>
 	<p:column headerText="Unidade de Tempo">
 		
@@ -111,6 +113,7 @@
 	<p:column headerText="Excluir">
 	<p:commandButton icon="ui-icon-trash" title="Excluir" actionListener="#{modeloRepositorio.deletarModeloWeb()}" update="tabela2">
 	<f:setPropertyActionListener  value="#{todos2.modelo.descricao}" target="#{modeloRepositorio.delete}" />
+	 <p:confirm header="Atenção" message="Deseja Realmente excluir o Modelo?" icon="ui-icon-alert" /> 
 	</p:commandButton>
 	</p:column>
 </p:dataTable>
@@ -122,9 +125,14 @@
         <div class="cleaner"></div>
     </div>
 </div>
-
+<p:growl id="messages" showDetail="true" /> 
 </h:body>   
-   
+ <h:form>  
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+    </p:confirmDialog>  
+</h:form>    
    
    
    

@@ -1,12 +1,13 @@
 package org.simadm2.model;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import javax.faces.context.FacesContext;
 
 import core.Constante;
 import core.Estoque;
@@ -201,7 +202,7 @@ public class ModeloRepositorio {
 	        if (todos2.get(i).getModelo().getDescricao().equals(delete)) {  
 	            delete += todos2.remove(i);  
 	        }  
-	    }  
+	    } 
 	}
 	
 	public void deletarModeloDisp(){
@@ -210,7 +211,8 @@ public class ModeloRepositorio {
 	        if (disponivel.get(i).getModelo().getDescricao().equals(delete)) {  
 	            delete += disponivel.remove(i);  
 	        }  
-	    }  
+	    } 
+	   
 	}
 
 	public void addTodos(Modelo mod){
@@ -234,8 +236,7 @@ public class ModeloRepositorio {
 		System.out.println("Passou aki3 " + disp);
 	}
 	
-	// =================================== GETS SETS
-	// ================================
+	// =================================== GETS SETS   // ================================
 	public List<Modelo> getTodos() {
 		// todos.add(getModeloExemplo());
 		// todos.add(getModeloFinanceiro());
