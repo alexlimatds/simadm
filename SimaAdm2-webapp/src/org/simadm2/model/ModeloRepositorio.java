@@ -238,7 +238,7 @@ public class ModeloRepositorio {
 	
 	// =================================== GETS SETS   // ================================
 	public List<Modelo> getTodos() {
-		// todos.add(getModeloExemplo());
+		 todos.add(getModeloExemplo());
 		// todos.add(getModeloFinanceiro());
 		// todos.add(getModeloTeste());
 		return todos;
