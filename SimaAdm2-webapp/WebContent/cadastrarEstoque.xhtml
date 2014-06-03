@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+	<center>
+		<h2>Cadastro de Estoque</h2>
+	</center>
+		<p:panel id="panel" header="Novo Estoque"
+			style="margin-bottom:10px;">
+			<h:panelGrid id="cadastrarEstoque" columns="2">
+			<h:form action="" method="post" name="form">
+				<h:outputText id="nomeTxt" value="Nome:" />
+				<h:inputText id="nome" label="Nome" maxlength="200" size="30" />
+				
+				<h:outputText id="unidadeTxt" value="Unidade:" />
+				<h:inputText id="unidade" label="unidade" size="20" />
+				
+				<h:outputText id="valorTxt" value="valor Inicial:" />
+				
+				 <!--Pass the value field as selector when clicked on radio button-->
+         <input type="radio" name="radio" value="Categori" onclick="enable_area(this.value);" />
+        <h:inputText id="valorini" label="valor" size="20" />
+        <br />
+			</h:form>	
+
+			</h:panelGrid>
+		</p:panel>
+	</ui:define>
+
+</ui:composition>
+
+</html>
