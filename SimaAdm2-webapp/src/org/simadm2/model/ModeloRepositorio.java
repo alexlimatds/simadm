@@ -28,7 +28,7 @@ public class ModeloRepositorio {
 
 	private Modelo modeloCad = new Modelo(dt, inicio, fim);
 
-	 static ArrayList<Modelo> todos = new ArrayList<Modelo>();
+	 private ArrayList<Modelo> todos = new ArrayList<Modelo>();
 	 static ArrayList<ModeloWeb> todos2 = new ArrayList<ModeloWeb>();
 	 static ArrayList<ModeloWeb> disponivel = new ArrayList<ModeloWeb>();
 	 static ArrayList<ModeloWeb> disponivelAsTurmas = new ArrayList<ModeloWeb>();
@@ -50,7 +50,7 @@ public class ModeloRepositorio {
 		modeloWeb2.setResumo("Modelo simples de exemplo Financeiro");
 		//todos2.add(modeloWeb);
 		//todos2.add(modeloWeb2);
-		todos.add(getModeloFinanceiro());
+		//todos.add(getModeloFinanceiro());
 		//todos.add(getModeloTeste());
 	}
 
@@ -239,8 +239,8 @@ public class ModeloRepositorio {
 	// =================================== GETS SETS   // ================================
 	public List<Modelo> getTodos() {
 		 todos.add(getModeloExemplo());
-		// todos.add(getModeloFinanceiro());
-		// todos.add(getModeloTeste());
+		 todos.add(getModeloFinanceiro());
+		 todos.add(getModeloTeste());
 		return todos;
 	}
 	
