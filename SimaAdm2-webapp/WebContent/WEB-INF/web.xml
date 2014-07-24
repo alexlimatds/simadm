@@ -68,8 +68,4 @@
   <servlet-name>Faces Servlet</servlet-name>
   <url-pattern>*.xhtml</url-pattern>
  </servlet-mapping>
- <welcome-file-list>
-  <welcome-file>Inicio2.xhtml</welcome-file>
- 
- </welcome-file-list>
-</web-app>
+ </web-app>
