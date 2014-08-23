@@ -139,7 +139,7 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 	height:80px;
 	overflow:hidden;
 	display:block;
-	background:url(images/templatemo_icon_01.png) center center no-repeat;
+	background:url("#{resource['images/templatemo_icon_01.png']}") center center no-repeat;
 	cursor:default;
 }
 
@@ -147,8 +147,8 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 #mid_title { font-size: 36px; font-weight: 400; color: #9ecefa; margin-bottom: 30px;  }
 #mid_left { float: left; margin-left: 30px; margin-top: 30px; width: 600px; }
 #mid_left p { font-size: 18px; color: #c9c5cd; margin-bottom: 20px; }
-#mid_left .viewall { clear: both; float: right; display: block; margin-top: 20px; width: 136px; height: 50px; background: url(images/templatemo_viewall_btn.png) no-repeat }
-#templatemo_middle img { float: left; margin-left: 60px }
+#mid_left .viewall { clear: both; float: right; display: block; margin-top: 20px; width: 136px; height: 50px; background: url("#{resource['images/templatemo_viewall_btn.png']}") no-repeat }
+#templatemo_middle img { float: left; margin-left: 60px }                                                                 
 
 #templatemo_main {
 	clear: both;
@@ -171,15 +171,15 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 
 .cbox_rm { margin: 0 } 
 
-.fp_box  { position: relative; height: 110px; width: 220px; padding: 20px 20px 20px 60px; background: url(images/templatemo_fp_box.png) no-repeat } 
-.fp_box h4, .fp_box h4 a { color: #145da1 }
+.fp_box  { position: relative; height: 110px; width: 220px; padding: 20px 20px 20px 60px; background: url("#{resource['images/templatemo_fp_box.png']}") no-repeat } 
+.fp_box h4, .fp_box h4 a { color: #145da1 }                                                           
 .fp_box span { position: absolute; top: 25px; left: 20px; width: 30px; height: 30px; }
-.fp_box span.b1 {  background: url(images/templatemo_s1.png) no-repeat }
-.fp_box span.b2 { background: url(images/templatemo_s2.png) no-repeat }
-.fp_box span.b3 { background: url(images/templatemo_s3.png) no-repeat }
+.fp_box span.b1 {  background: url("#{resource['images/templatemo_s1.png']}") no-repeat } 
+.fp_box span.b2 { background: url("#{resource['images/templatemo_s2.png']}") no-repeat }
+.fp_box span.b3 { background: url("#{resource['images/templatemo_s3.png']}") no-repeat }
 
-.tw_bullet { color: #2081da; padding-left: 20px; font-weight: 700; background: url(images/templatemo_title.png) center left no-repeat }
-
+.tw_bullet { color: #2081da; padding-left: 20px; font-weight: 700; background: url("#{resource['images/templatemo_title.png']}") center left no-repeat }
+                                                                               
 .rp_box { clear: both; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #CCC }
 .rp_box img { float: left; margin-right: 15px; border: 1px solid #fff }
 
@@ -189,7 +189,8 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 	height: 156px;
 	padding: 20px 0;
 	margin-bottom: 20px;
-	background: url(images/templatemo_gallery.png) no-repeat 
+	background: url("#{resource['images/templatemo_gallery.png']}") no-repeat 
+	
 }
 
 #latest_works h2 {
