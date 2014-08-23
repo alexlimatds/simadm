@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+		<div id="templatemo_main">
+			<center>
+				<h2>Cadastrar Modelos</h2>
+			</center>
+			<br /> <br />
+			<h:form id="cadastro">
+				<p:panel id="panel" header="Novo Modelo" style="margin-bottom:10px;">
+					<h:panelGrid columns="2">
+						<h:outputText value="Descrição:" />
+						<h:inputText id="descricao" value="#{cadastroModeloMB.descricao}" />
+
+						<h:outputText value="Dt:" />
+						<h:inputText id="dt" value="#{cadastroModeloMB.modeloCad.dt}" />
+
+						<h:outputText value="Inicio:" />
+						<h:inputText id="inicio"
+							value="#{cadastroModeloMB.modeloCad.inicio}" />
+
+						<h:outputText value="Fim:" />
+						<h:inputText id="fim" value="#{cadastroModeloMB.modeloCad.fim}" />
+
+						<h:outputText value="Unidade de Tempo:" />
+						<h:inputText id="unidadeDeTempo" value="" />
+
+						<h:outputText value="Disponível as turmas:" />
+						<p:selectBooleanCheckbox
+							value="#{cadastroModeloMB.disponivelAsTurmas}" />
+
+
+						<h:outputText value="Disponível a outros professores:" />
+						<p:selectBooleanCheckbox
+							value="#{cadastroModeloMB.disponivelAOutrosProfessores}" />
+
+						<h:outputText value="Resumo" />
+						<br />
+						<h:outputText id="counter" />
+						<p:inputTextarea rows="5" cols="30" counter="counter"
+							maxlength="300" counterTemplate="{0} caracteres restantes."
+							autoResize="true" value="#{cadastroModeloMB.resumo}" />
+						<h:outputText value="" />
+
+						<br />
+						<h:outputText value="Contexto" />
+						<p:editor id="editor" value="#{cadastroModeloMB.contexto}"
+							width="600" />
+
+						<br></br>
+						<p:commandButton value="Cadastrar"
+							actionListener="#{cadastroModeloMB.cadastrarModelo()}"
+							update=":tabela2 cadastro panel" />
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+			<br />
+			<center>
+				<p:dataTable id="tabela2" var="todos2"
+					value="#{modeloRepositorio.todos2}">
+					<p:column headerText="Descrição">
+		#{todos2.modelo.descricao}
+	</p:column>
+					<p:column headerText="Resumo">
+		#{todos2.resumo}
+	</p:column>
+					<p:column headerText="contexto">
+		#{todos2.contexto}
+	</p:column>
+					<p:column headerText="disponível as turmas">
+						<center>
+							<p:selectBooleanCheckbox value="#{todos2.disponivelAsTurmas}"
+								disabled="true" />
+						</center>
+
+					</p:column>
+					<p:column headerText="disponível a outros professores">
+						<center>
+							<p:selectBooleanCheckbox
+								value="#{todos2.disponivelAOutrosProfessores}" disabled="true" />
+						</center>
+
+					</p:column>
+					<p:column headerText="Unidade de Tempo">
+
+					</p:column>
+					<p:column headerText="inicio">
+		#{todos2.modelo.inicio}
+	</p:column>
+					<p:column headerText="fim">
+		#{todos2.modelo.fim}
+	</p:column>
+					<p:column headerText="Excluir">
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							actionListener="#{modeloRepositorio.deletarModeloWeb()}"
+							update="tabela2">
+							<f:setPropertyActionListener value="#{todos2.modelo.descricao}"
+								target="#{modeloRepositorio.delete}" />
+							<p:confirm header="Atenção"
+								message="Deseja Realmente excluir o Modelo?"
+								icon="ui-icon-alert"></p:confirm>
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</center>
+			<br></br>
+			<p:growl id="messages" showDetail="true" />
+			<h:form>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</h:form>
+
+		</div>
+		<!-- end of main -->
+	</ui:define>
+
+
+</ui:composition>
+
+</html>
