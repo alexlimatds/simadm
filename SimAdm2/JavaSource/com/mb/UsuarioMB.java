@@ -16,6 +16,8 @@ public class UsuarioMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Usuarios user;
+	
+	//Area do LOGIN ==========================================
 
 	public boolean isAdmin() {
 		return user.isAdmin();

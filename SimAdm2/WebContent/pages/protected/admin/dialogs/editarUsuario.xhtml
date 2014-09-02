@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<p:dialog widgetVar="EditarUsuarioWidget"
+		id="editarUsuarioId" height="150" width="500" modal="true"
+		closable="true" draggable="false" resizable="false">
+		<h:form id="FormEditarUsuario" prependId="false">
+			<h:panelGrid columns="2">
+				<h:outputText value="* #{bundle.usuarioNome}" />
+				<h:inputText value="#{UsuariosMB.usuario.nome}" required="true" label="#{bundle.usuarioNome}" />
+				<h:outputText value="* #{bundle.usuarioEmail}" />
+				<h:inputText value="#{UsuariosMB.usuario.email}" required="true" label="#{bundle.usuarioEmail}" />
+				<h:outputText value="* #{bundle.usuarioSenha}" />
+				<h:inputText value="#{UsuariosMB.usuario.senha}" required="true" label="#{bundle.usuarioSenha}" />
+				<p:outputLabel for="tipo1" value="Tipo Usuário" />
+       			 <p:selectOneMenu id="tipo1" value="#{UsuariosMB.usuario.tipo}">
+            		<f:selectItem itemLabel="Admin" itemValue="ADMIN" />
+            		<f:selectItem itemLabel="Aluno" itemValue="ALUNO" />
+            		<f:selectItem itemLabel="Professor" itemValue="PROFESSOR" />
+        		</p:selectOneMenu>	
+					
+				<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
+					action="#{UsuariosMB.updateUsuario()}"
+					update=":messageGrowl :formUsuarios:UsuarioTabble"
+					oncomplete="closeDialogIfSucess(xhr, status, args, EditarUsuarioWidget, 'editarUsuarioId')" />
+				<p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{UsuariosMB.resetUsuario()}"
+					onclick="EditarUsuarioWidget.hide();" type="button" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

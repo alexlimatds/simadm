@@ -19,4 +19,8 @@ public class UsuarioDAO extends GenericDAO<Usuarios> {
  
         return super.findOneResult(Usuarios.FIND_BY_EMAIL, parameters);
     }
+    
+    public void delete(Usuarios user) {
+    	super.delete(user.getId(), Usuarios.class);
+}
 }
