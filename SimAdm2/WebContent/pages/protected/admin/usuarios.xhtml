@@ -10,6 +10,9 @@
 	<ui:define name="conteudo">
 	 <div id="templatemo_main">
 	 <p:growl id="messageGrowl" />
+	        <h3>
+        		Gerenciar Usuários
+        	</h3>
       	<h:form id="formUsuarios">
 				<p:dataTable id="UsuarioTabble" value="#{UsuariosMB.allusers}" var="usuario" emptyMessage="#{bundle.noRecords}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -30,15 +33,18 @@
 						<h:outputText value="#{usuario.email}" />
 					</p:column>
 					<p:column>
-						<p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" onclick="visualizarUsuarioWidget.show();" update=":FormVisualizarUsuario" >
+						<f:facet name="header">
+							<h:outputText value="#{bundle.acao}" />
+						</f:facet>
+						<p:commandButton  icon="ui-icon-search" onclick="visualizarUsuarioWidget.show();" update=":FormVisualizarUsuario" >
 							<f:setPropertyActionListener target="#{UsuariosMB.usuarioSelecionado}" value="#{usuario}" />
 						</p:commandButton> 
 						<p:spacer width="10px" />
-						<p:commandButton value="#{bundle.update}" icon="ui-icon-pencil" update=":FormEditarUsuario" onclick="EditarUsuarioWidget.show();" >
+						<p:commandButton  icon="ui-icon-pencil" update=":FormEditarUsuario" onclick="EditarUsuarioWidget.show();" >
 							<f:setPropertyActionListener target="#{UsuariosMB.usuario}" value="#{usuario}" />
 						</p:commandButton>
 						<p:spacer width="10px" />
-						<p:commandButton value="#{bundle.delete}" icon="ui-icon-trash" update=":formDeletarUsuario" onclick="deletarUsuarioWidget.show();" >
+						<p:commandButton  icon="ui-icon-trash" update=":formDeletarUsuario" onclick="deletarUsuarioWidget.show();" >
 							<f:setPropertyActionListener target="#{UsuariosMB.usuario}" value="#{usuario}" />
 						</p:commandButton>
 						<p:spacer width="10px" />
