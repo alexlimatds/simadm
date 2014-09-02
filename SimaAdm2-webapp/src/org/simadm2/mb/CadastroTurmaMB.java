@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.simadm2.model.ModeloRepositorio;
+import org.simadm2.model.ModeloWeb;
 import org.simadm2.model.Turma;
 import org.simadm2.model.TurmaRepositorio;
 
@@ -21,6 +22,7 @@ import core.Modelo;
 public class CadastroTurmaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private ModeloRepositorio repositorioModelo = new ModeloRepositorio();
 	private List<Modelo> modelos = new ArrayList<Modelo>();
 	private Turma turma = new Turma();
 	private TurmaRepositorio repositorioTurma = new TurmaRepositorio();
@@ -29,6 +31,7 @@ public class CadastroTurmaMB implements Serializable {
 	private Map<String, Modelo> mapaModelos = new HashMap<String, Modelo>();
 	private Modelo modeloSelecionado;
 
+	
 	public Modelo getModeloSelecionado() {
 		return modeloSelecionado;
 	}
@@ -36,10 +39,12 @@ public class CadastroTurmaMB implements Serializable {
 	public void setModeloSelecionado(Modelo modeloSelecionado) {
 		this.modeloSelecionado = modeloSelecionado;
 	}
-
+	
+	
+	
+	
 	@PostConstruct
 	public void init() {
-		ModeloRepositorio repositorioModelo = new ModeloRepositorio();
 		modelos.addAll(repositorioModelo.getTodos());
 		turmas.addAll(repositorioTurma.getTurmas());
 		for (Modelo m : modelos) {

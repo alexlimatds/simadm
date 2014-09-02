@@ -32,27 +32,54 @@ public class ModeloRepositorio {
 	 static ArrayList<ModeloWeb> todos2 = new ArrayList<ModeloWeb>();
 	 static ArrayList<ModeloWeb> disponivel = new ArrayList<ModeloWeb>();
 	 static ArrayList<ModeloWeb> disponivelAsTurmas = new ArrayList<ModeloWeb>();
+
 	
 	
 
 	public ModeloRepositorio() {
-		ModeloWeb modeloWeb = new ModeloWeb(modeloCad, false, false, delete, delete);
+		/*ModeloWeb modeloWeb = new ModeloWeb(modeloCad, false, false, delete, delete,"");
 		modeloWeb.setModelo(getModeloExemplo());
 		modeloWeb.setContexto("Este é um modelo de exemplo muito simples.");
 		modeloWeb.setDisponivelAsTurmas(true);
 		modeloWeb.setDisponivelAOutrosProfessores(true);
 		modeloWeb.setResumo("Modelo simples de exemplo");
 		//TODO criar modeloWeb com os modelos abaixo
+		ModeloWeb modeloWeb2 = new ModeloWeb(modeloCad, false, false, delete, delete,"");
+		modeloWeb2.setModelo(getModeloFinanceiro());
+		modeloWeb2.setContexto("Este é um modelo de Financeiro");
+		modeloWeb2.setDisponivelAsTurmas(true);
+		modeloWeb2.setResumo("Modelo simples de exemplo Financeiro");*/
+		//todos2.add(modeloWeb);
+		//todos2.add(modeloWeb2);
+		todos.add(getModeloFinanceiro());
+		todos.add(getModeloExemplo());
+
+	}
+	
+	public ModeloWeb getModeloWeb(){
+		ModeloWeb modeloWeb = new ModeloWeb(modeloCad, false, false, delete, delete);
+		modeloWeb.setModelo(getModeloExemplo());
+		modeloWeb.setContexto("Este é um modelo de exemplo muito simples.");
+		modeloWeb.setDisponivelAsTurmas(true);
+		modeloWeb.setDisponivelAOutrosProfessores(true);
+		modeloWeb.setResumo("Modelo simples de exemplo");
+		
+		return modeloWeb;
+		
+	}
+	
+	public ModeloWeb getModeloWeb2(){
 		ModeloWeb modeloWeb2 = new ModeloWeb(modeloCad, false, false, delete, delete);
 		modeloWeb2.setModelo(getModeloFinanceiro());
 		modeloWeb2.setContexto("Este é um modelo de Financeiro");
 		modeloWeb2.setDisponivelAsTurmas(true);
 		modeloWeb2.setResumo("Modelo simples de exemplo Financeiro");
-		//todos2.add(modeloWeb);
-		//todos2.add(modeloWeb2);
-		//todos.add(getModeloFinanceiro());
-		//todos.add(getModeloTeste());
+		
+		return modeloWeb2;
+		
 	}
+	
+	
 
 	public Modelo getModeloExemplo() {
 		try {
@@ -238,13 +265,17 @@ public class ModeloRepositorio {
 	
 	// =================================== GETS SETS   // ================================
 	public List<Modelo> getTodos() {
-		 todos.add(getModeloExemplo());
-		 todos.add(getModeloFinanceiro());
-		 todos.add(getModeloTeste());
+		 //todos.add(getModeloExemplo());
+		 //todos.add(getModeloFinanceiro());
+		 //todos.add(getModeloTeste());
 		return todos;
 	}
 	
 	public List<ModeloWeb> getTodos2() {
+		if(todos2.size() == 0){
+		todos2.add(getModeloWeb());
+		todos2.add(getModeloWeb2());
+		}
 		return todos2;
 	}
 	

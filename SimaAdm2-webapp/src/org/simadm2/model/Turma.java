@@ -11,7 +11,7 @@ public class Turma {
 	private String descricao;
 	private String curso;
 	private String codigoAcesso;
-	private List<Modelo> modelos = new ArrayList<Modelo>();;
+	private List<Modelo> modelos = new ArrayList<Modelo>();
 	public Turma() {
 	}
 	

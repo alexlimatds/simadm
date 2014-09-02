@@ -22,6 +22,7 @@ public class ModeloWeb {
 		this.contexto = contexto;
 	}
 
+
 	public Modelo getModelo() {
 		return modelo;
 	}
