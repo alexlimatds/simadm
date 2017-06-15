@@ -15,13 +15,13 @@ encontra-se a base de código do SIMADM 2.
 
 Integrantes do projeto SIMADM:
  * Alexandre Lima - TDS/CEFET-RN
+ * Alexandre Magno - TDS/CEFET-RN
  * Fábio Penha - TDS/CEFET-RN
  * Fellipe Aleixo - CEFET-RN
  * Josué Medeiros Júnior - UFRN
  * Nicholas Paiva
  * Plácido Souza Neto - TDS/CEFET-RN
  * Paulo Meireles - TDS/CEFET-RN
- * Alexandre Magno - TDS/CEFET-RN
 
 Integrantes do projeto SIMADM 2:
  * Alexandre Lima - DIATINF/IFRN
